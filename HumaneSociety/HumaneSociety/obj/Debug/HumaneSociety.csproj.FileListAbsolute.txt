@@ -1,0 +1,2 @@
+C:\Users\EvanC\Documents\GitHub\HumaneSociety\HumaneSociety\bin\Debug\HumaneSociety.exe.config
+C:\Users\EvanC\Documents\GitHub\HumaneSocietyProject\HumaneSociety\HumaneSociety\bin\Debug\HumaneSociety.exe.config
