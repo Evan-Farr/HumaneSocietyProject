@@ -11,7 +11,7 @@ namespace HumaneSociety
         static void Main(string[] args)
         {
             HumaneSociety hs = new HumaneSociety();
-            Animal puppy = new Dog(hs.GenerateUniqueID(), "Rodger", "male", "8 months", "Greyhound", "Active", false,
+            Animal puppy = new Dog(hs.GenerateUniqueID(), "Rodger", "male", "8 months", "Greyhound", "Fully-Grown: Large", "Active", false,
                 "One scoop, twice per day(morning/mid-afternoon)", true, true, 345);
             hs.IntakeAnimal(puppy);
             Animal kitty = new Cat(hs.GenerateUniqueID(), "Missy", "female", "2 years", "Short-Hair", "Mellow", false,

@@ -73,6 +73,11 @@ namespace HumaneSociety
             var room = rooms.Where(r => r.RoomNumber == placement);
             foreach(var r in room)
             {
+                if(r.Available == false)
+                {
+                    Console.WriteLine("!!!Error: That room is already taken by one of guests. \n");
+                    AddAnimalToRoom(animal);
+                }
                 r.Animal = animal;
                 r.Available = false;
                 break;
