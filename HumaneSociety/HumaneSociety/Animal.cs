@@ -11,7 +11,7 @@ namespace HumaneSociety
         protected string iD;
         protected string name;
         protected string gender;
-        protected int age;
+        protected string age;
         protected string personalityType;
         protected double adoptionPrice;
         protected string category;
@@ -19,7 +19,7 @@ namespace HumaneSociety
         public string ID { get { return iD; } set { iD = value; } }
         public string Name { get { return name; } set { name = value; } }
         public string Gender { get { return gender; } set { gender = value; } }
-        public int Age { get { return age; } set { age = value; } }
+        public string Age { get { return age; } set { age = value; } }
         public string PersonalityType { get { return personalityType; } set { personalityType = value; } }
         public double AdoptionPrice { get { return adoptionPrice; } set { adoptionPrice = value; } }
         public string Category { get { return category; } set { category = value; } }

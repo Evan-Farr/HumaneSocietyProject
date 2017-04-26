@@ -11,7 +11,9 @@ namespace HumaneSociety
         static void Main(string[] args)
         {
             HumaneSociety hs = new HumaneSociety();
-
+            Animal puppy = new Dog(hs.GenerateUniqueID(), "Rodger", "male", "8 months", "Greyhound", "Active", false,
+                "One scoop, twice per day(morning/late afternoon)", true, true, 345);
+            hs.IntakeAnimal(puppy);
         }
     }
 }

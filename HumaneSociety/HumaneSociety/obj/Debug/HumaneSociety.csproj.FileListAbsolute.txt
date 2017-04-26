@@ -1,2 +1,7 @@
 C:\Users\EvanC\Documents\GitHub\HumaneSociety\HumaneSociety\bin\Debug\HumaneSociety.exe.config
 C:\Users\EvanC\Documents\GitHub\HumaneSocietyProject\HumaneSociety\HumaneSociety\bin\Debug\HumaneSociety.exe.config
+C:\Users\EvanC\Documents\GitHub\HumaneSocietyProject\HumaneSociety\HumaneSociety\bin\Debug\HumaneSociety.exe
+C:\Users\EvanC\Documents\GitHub\HumaneSocietyProject\HumaneSociety\HumaneSociety\bin\Debug\HumaneSociety.pdb
+C:\Users\EvanC\Documents\GitHub\HumaneSocietyProject\HumaneSociety\HumaneSociety\obj\Debug\HumaneSociety.csprojResolveAssemblyReference.cache
+C:\Users\EvanC\Documents\GitHub\HumaneSocietyProject\HumaneSociety\HumaneSociety\obj\Debug\HumaneSociety.exe
+C:\Users\EvanC\Documents\GitHub\HumaneSocietyProject\HumaneSociety\HumaneSociety\obj\Debug\HumaneSociety.pdb
