@@ -62,6 +62,7 @@ namespace HumaneSociety
             animals.Add(animal, animal.ID);
             Console.WriteLine("Open rooms: ");
             FindOpenRoom(rooms);
+            AddAnimalToRoom(animal);
         }
 
         public void AddAnimalToRoom(Animal animal)
