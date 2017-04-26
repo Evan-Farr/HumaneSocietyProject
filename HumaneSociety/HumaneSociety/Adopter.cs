@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    class Program
+    public class Adopter
     {
-        static void Main(string[] args)
-        {
-            HumaneSociety hs = new HumaneSociety();
-
-        }
     }
 }

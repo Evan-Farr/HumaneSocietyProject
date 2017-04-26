@@ -9,10 +9,13 @@ namespace HumaneSociety
     public class HumaneSociety
     {
         public Dictionary<Animal, string> animals;
+        public List<Room> rooms;
 
         public HumaneSociety()
         {
             animals = new Dictionary<Animal, string>();
+            rooms = new List<Room>();
+            BuildRooms(100);
         }
 
         public string GenerateUniqueID()
@@ -28,6 +31,21 @@ namespace HumaneSociety
             }
             string ID = newRandom.ToString();
             return ID;
+        }
+
+        public int GenerateRoomNumber()
+        {
+            int roomNumber = rooms.Count + 1;
+            return roomNumber;
+        }
+
+        public void BuildRooms(int amount)
+        {
+            for(int i = 0; i < amount; i++)
+            {
+                Room room = new Room(GenerateRoomNumber());
+                rooms.Add(room);
+            }
         }
 
         public void IntakeAnimal(Animal animal)
