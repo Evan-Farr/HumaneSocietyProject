@@ -22,8 +22,8 @@ namespace HumaneSociety
         public bool Shots { get { return shots; } set { shots = value; } }
         public bool DeClawed { get { return deClawed; } set { deClawed = value; } }
 
-        public Cat(string iD, string name, string gender, string age, string breed, string personlityType, bool specialNeeds, bool spayedNeutered,
-            bool shots, bool deClawed, double adoptionPrice) :base(iD)
+        public Cat(string iD, string name, string gender, string age, string breed, string personlityType, bool specialNeeds, string foodRequirements,
+            bool spayedNeutered, bool shots, bool deClawed, double adoptionPrice) :base(iD)
         {
             this.Name = name;
             this.Gender = gender;
@@ -31,26 +31,12 @@ namespace HumaneSociety
             this.breed = breed;
             this.PersonalityType = personalityType;
             this.specialNeeds = specialNeeds;
+            this.foodRequirements = foodRequirements;
             this.spayedNeutered = spayedNeutered;
             this.shots = shots;
             this.deClawed = deClawed;
             this.AdoptionPrice = adoptionPrice;
             this.Category = "Cats";
-        }
-
-        public void GetSpayedNeutered()
-        {
-            this.spayedNeutered = true;
-        }
-
-        public void GetShots()
-        {
-            this.shots = true;
-        }
-
-        public void GetDeClawed()
-        {
-            this.deClawed = true;
         }
     }
 }

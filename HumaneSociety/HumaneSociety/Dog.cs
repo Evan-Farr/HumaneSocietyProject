@@ -36,15 +36,5 @@ namespace HumaneSociety
             this.AdoptionPrice = adoptionPrice;
             this.Category = "Dogs";
         }
-
-        public void GetSpayedNeutered()
-        {
-            this.spayedNeutered = true;
-        }
-
-        public void GetShots()
-        {
-            this.shots = true;
-        }
     }
 }

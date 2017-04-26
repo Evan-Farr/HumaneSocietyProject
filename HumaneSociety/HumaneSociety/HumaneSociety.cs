@@ -15,7 +15,7 @@ namespace HumaneSociety
         {
             animals = new Dictionary<Animal, string>();
             rooms = new List<Room>();
-            BuildRooms(100);
+            BuildRooms(10);
         }
 
         public string GenerateUniqueID()
@@ -60,6 +60,7 @@ namespace HumaneSociety
         public void IntakeAnimal(Animal animal)
         {
             animals.Add(animal, animal.ID);
+
             Console.WriteLine("Open rooms: ");
             FindOpenRoom(rooms);
             AddAnimalToRoom(animal);
@@ -74,6 +75,7 @@ namespace HumaneSociety
             {
                 r.Animal = animal;
                 r.Available = false;
+                break;
             }
         }
 

@@ -20,8 +20,8 @@ namespace HumaneSociety
         public bool SpayedNeutered { get { return spayedNeutered; } set { spayedNeutered = value; } }
         public bool Shots { get { return shots; } set { shots = value; } }
 
-        public Rabbit(string iD, string name, string gender, string age, string breed, string personlityType, bool specialNeeds, string foodRequirements,
-            bool spayedNeutered, bool shots, double adoptionPrice) :base(iD)
+        public Rabbit(string iD, string name, string gender, string age, string breed, string personlityType, bool specialNeeds,
+            string foodRequirements, bool spayedNeutered, bool shots, double adoptionPrice) :base(iD)
         {
             this.Name = name;
             this.Gender = gender;
@@ -29,20 +29,11 @@ namespace HumaneSociety
             this.breed = breed;
             this.PersonalityType = personalityType;
             this.specialNeeds = specialNeeds;
+            this.foodRequirements = foodRequirements;
             this.spayedNeutered = spayedNeutered;
             this.shots = shots;
             this.AdoptionPrice = adoptionPrice;
             this.Category = "Small Animals";
-        }
-
-        public void GetSpayedNeutered()
-        {
-            this.spayedNeutered = true;
-        }
-
-        public void GetShots()
-        {
-            this.shots = true;
         }
     }
 }

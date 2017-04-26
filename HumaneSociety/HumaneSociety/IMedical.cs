@@ -10,8 +10,5 @@ namespace HumaneSociety
     {
         bool SpayedNeutered { get; set; }
         bool Shots { get; set; }
-
-        void GetSpayedNeutered();
-        void GetShots();
     }
 }

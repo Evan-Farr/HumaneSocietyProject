@@ -16,8 +16,8 @@ namespace HumaneSociety
         public bool SpecialNeeds { get { return specialNeeds; } set { specialNeeds = value; } }
         public string FoodRequirements { get { return foodRequirements; } set { foodRequirements = value; } }
 
-        public Bird(string iD, string name, string gender, string age, string breed, string personlityType, bool specialNeeds, string foodRequirements,
-            double adoptionPrice) :base(iD)
+        public Bird(string iD, string name, string gender, string age, string breed, string personlityType, bool specialNeeds, 
+            string foodRequirements, double adoptionPrice) :base(iD)
         {
             this.Name = name;
             this.Gender = gender;
