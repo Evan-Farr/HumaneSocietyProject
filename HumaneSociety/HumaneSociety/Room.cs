@@ -10,14 +10,17 @@ namespace HumaneSociety
     {
         private bool available;
         private int roomNumber;
+        private Animal animal;
 
         public bool Available { get { return available; } set { available = value; } }
         public int RoomNumber { get { return roomNumber; } set { roomNumber = value; } }
+        public Animal Animal { get { return animal; } set { animal = value; } }
 
         public Room(int roomNumber)
         {
-            this.available = false;
+            this.available = true;
             this.roomNumber = roomNumber;
+            this.animal = null;
         }
     }
 }

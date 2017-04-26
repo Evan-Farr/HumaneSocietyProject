@@ -33,12 +33,6 @@ namespace HumaneSociety
             return ID;
         }
 
-        public int GenerateRoomNumber()
-        {
-            int roomNumber = rooms.Count + 1;
-            return roomNumber;
-        }
-
         public void BuildRooms(int amount)
         {
             for(int i = 0; i < amount; i++)
@@ -48,9 +42,38 @@ namespace HumaneSociety
             }
         }
 
+        public int GenerateRoomNumber()
+        {
+            int roomNumber = rooms.Count + 1;
+            return roomNumber;
+        }
+
+        public void FindOpenRoom(List<Room> rooms)
+        {
+            var openRooms = rooms.Where(r => r.Available == true);
+            foreach(var room in openRooms)
+            {
+                Console.WriteLine(room.RoomNumber + "\n");
+            }
+        }
+
         public void IntakeAnimal(Animal animal)
         {
             animals.Add(animal, animal.ID);
+            Console.WriteLine("Open rooms: ");
+            FindOpenRoom(rooms);
+        }
+
+        public void AddAnimalToRoom(Animal animal)
+        {
+            Console.WriteLine($"Enter the room number where {animal.Name} should be placed.");
+            int placement = int.Parse(Console.ReadLine());
+            var room = rooms.Where(r => r.RoomNumber == placement);
+            foreach(var r in room)
+            {
+                r.Animal = animal;
+                r.Available = false;
+            }
         }
 
         public void SpayNeuter(IMedical animal)
