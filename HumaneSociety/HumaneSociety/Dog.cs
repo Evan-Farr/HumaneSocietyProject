@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    public class Dog : Animal, IBreed, INeed, IMedical, IID
+    public class Dog : Animal, IBreed, INeed, IMedical
     {
         private string size;
         private string breed;
@@ -31,15 +31,10 @@ namespace HumaneSociety
             this.breed = breed;
             this.PersonalityType = personalityType;
             this.AdoptionPrice = adoptionPrice;
-            this.Category = "Dog";
+            this.Category = "Dogs";
         }
 
-        public int SetUniqueID()
-        {
-            return ID;
-        }
-
-        private void GetSpayedNeutered()
+        public void GetSpayedNeutered()
         {
 
         }

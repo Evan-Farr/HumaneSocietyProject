@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    interface IMedical
+    public interface IMedical
     {
         bool SpayedNeutered { get; set; }
         bool Shots { get; set; }

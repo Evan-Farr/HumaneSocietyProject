@@ -26,7 +26,12 @@ namespace HumaneSociety
 
         public Animal()
         {
+            this.iD = SetUniqueID();
+        }
 
+        public int SetUniqueID()
+        {
+            return iD;
         }
     }
 }
