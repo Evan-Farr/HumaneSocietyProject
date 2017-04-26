@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    interface IMedical
+    public class Bird : Animal, IBreed, INeed, IID
     {
-        bool SpayedNeutered { get; set; }
-        bool Shots { get; set; }
-
-        void GetSpayedNeutered();
-        void GetShots();
     }
 }
