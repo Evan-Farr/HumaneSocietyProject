@@ -113,5 +113,31 @@ namespace HumaneSociety
                     break;
             }
         }
+
+        public static Animal GetKnownCharacteristics()
+        {
+            Animal animal = new Animal();
+            Console.WriteLine("For each characteristic, enter search term.");
+            Console.WriteLine("*If you don't know a certain characteristic, enter 'NA' as an answer.");
+            Console.WriteLine("1. Species: ");
+            animal.Species = Console.ReadLine().ToLower();
+            Console.WriteLine("2. Animal's Name: ");
+            animal.Name = Console.ReadLine().ToLower();
+            Console.WriteLine("3. Gender: ");
+            animal.Gender = Console.ReadLine().ToLower();
+            Console.WriteLine("4. Age: ");
+            animal.Age = int.Parse(Console.ReadLine());
+            Console.WriteLine("5. Breed: ");
+            animal.Breed = Console.ReadLine().ToLower();
+            Console.WriteLine("6. Size: ");
+            animal.Size = Console.ReadLine().ToLower();
+            Console.WriteLine("7. Personality Type: ");
+            animal.Personality_Type = Console.ReadLine().ToLower();
+            Console.WriteLine("5. Has Special Needs (enter 'true' or 'false'): ");
+            animal.Special_Needs = bool.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("7. Received Shots (enter 'true' or 'false'): ");
+            animal.Recieved_Shots = bool.Parse(Console.ReadLine().ToLower());
+            return animal;
+        }
     }
 }
