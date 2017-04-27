@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adopter.cs" />
-    <Compile Include="Animal.cs" />
+    <Compile Include="Adopters.cs" />
+    <Compile Include="Animals.cs" />
     <Compile Include="Bird.cs" />
     <Compile Include="Cat.cs" />
     <Compile Include="CreditCard.cs" />
@@ -67,7 +67,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Rabbit.cs" />
-    <Compile Include="Room.cs" />
+    <Compile Include="Rooms.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
