@@ -10,8 +10,7 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
-            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-            database.Connection.AddAnimal();
+            UI.Menu();
         }
     }
 }

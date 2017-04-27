@@ -151,7 +151,7 @@ namespace HumaneSociety
             animal.Name = Console.ReadLine().ToLower();
             Console.WriteLine("3. Gender: ");
             animal.Gender = Console.ReadLine().ToLower();
-            Console.WriteLine("4. Age: ");
+            Console.WriteLine("4. Age (if less than 1, input '-1': ");
             animal.Age = int.Parse(Console.ReadLine());
             Console.WriteLine("5. Breed: ");
             animal.Breed = Console.ReadLine().ToLower();
@@ -169,6 +169,8 @@ namespace HumaneSociety
             animal.Recieved_Shots = bool.Parse(Console.ReadLine().ToLower());
             Console.WriteLine("12. Animal Category (Options = Dog/Cat/Small-Animal): ");
             animal.Category = Console.ReadLine().ToLower();
+            Console.WriteLine("12. Adoption Price: ");
+            animal.Adoption_Price = double.Parse(Console.ReadLine());
             return animal;
         }
 

@@ -172,8 +172,19 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
             Animal animal = UI.GetNewAnimalInfo();
-            //database.InsertAnimal(animal);
             database.Animals.InsertOnSubmit(animal);
+            try
+            {
+                database.SubmitChanges();
+                Console.WriteLine($"\n! {animal.Name} has successfully been added as a new guest !");
+                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.ReadKey();
+                Console.Clear();
+                UI.Menu();
+            }catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public static void AddAdopter()
