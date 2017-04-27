@@ -48,9 +48,9 @@
     <Compile Include="Animals.cs" />
     <Compile Include="Bird.cs" />
     <Compile Include="Cat.cs" />
+    <Compile Include="Connection.cs" />
     <Compile Include="CreditCard.cs" />
     <Compile Include="Dog.cs" />
-    <Compile Include="HumaneSociety.cs" />
     <Compile Include="HumaneSociety.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Rabbit.cs" />
     <Compile Include="Rooms.cs" />
+    <Compile Include="UI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
