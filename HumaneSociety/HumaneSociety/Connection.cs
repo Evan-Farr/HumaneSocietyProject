@@ -39,5 +39,27 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
         }
+
+        public static void AddAnimal()
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+
+        }
+
+        public static void AddAdopter()
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+
+        }
+
+        public static void RemoveAnimal()
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+        }
+
+        public static void RemoveAdopter()
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+        }
     }
 }

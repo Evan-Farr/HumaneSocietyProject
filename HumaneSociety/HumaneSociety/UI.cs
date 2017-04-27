@@ -30,10 +30,10 @@ namespace HumaneSociety
                     AdopterSubMenu1();
                     break;
                 case "3":
-                    Update.AddAnimal();
+                    Connection.AddAnimal();
                     break;
                 case "4":
-                    Update.AddAdopter();
+                    Connection.AddAdopter();
                     break;
                 case "5":
                     Connection.SaveChanges();
