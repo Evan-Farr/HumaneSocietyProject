@@ -8,7 +8,7 @@ namespace HumaneSociety
 {
     public abstract class Animal
     {
-        protected string iD;
+        protected string id;
         protected string name;
         protected string gender;
         protected string age;
@@ -16,7 +16,7 @@ namespace HumaneSociety
         protected double adoptionPrice;
         protected string category;
 
-        public string ID { get { return iD; } set { iD = value; } }
+        public string ID { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
         public string Gender { get { return gender; } set { gender = value; } }
         public string Age { get { return age; } set { age = value; } }
@@ -24,9 +24,9 @@ namespace HumaneSociety
         public double AdoptionPrice { get { return adoptionPrice; } set { adoptionPrice = value; } }
         public string Category { get { return category; } set { category = value; } }
 
-        public Animal(string iD)
+        public Animal(string id)
         {
-            this.iD = iD;
+            this.id = id;
         }
         
     }

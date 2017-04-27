@@ -22,8 +22,8 @@ namespace HumaneSociety
         public bool SpayedNeutered { get { return spayedNeutered; } set { spayedNeutered = value; } }
         public bool Shots { get { return shots; } set { shots = value; } }
 
-        public Dog(string iD, string name, string gender, string age, string breed, string size, string personalityType, bool specialNeeds, string foodRequirements,
-            bool spayedNeutered, bool shots, double adoptionPrice) :base(iD)
+        public Dog(string id, string name, string gender, string age, string breed, string size, string personalityType, bool specialNeeds, string foodRequirements,
+            bool spayedNeutered, bool shots, double adoptionPrice) :base(id)
         {
             this.Name = name;
             this.Gender = gender;

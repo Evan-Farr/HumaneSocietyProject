@@ -8,7 +8,7 @@ namespace HumaneSociety
 {
     public class Adopter
     {
-        private string iD;
+        private string id;
         private string firstName;
         private char middleInitial;
         private string lastName;
@@ -23,7 +23,7 @@ namespace HumaneSociety
         private string typeOfOtherAnimals;
         private Animal interestedInAdopting;
 
-        public string ID { get { return iD; } }
+        public string ID { get { return id; } }
         public string FirstName { get { return firstName; } set { firstName = value; } }
         public char MiddleInitial { get { return middleInitial; } set { middleInitial = value; } }
         public string LastName { get { return lastName; } set { lastName = value; } }
@@ -38,9 +38,22 @@ namespace HumaneSociety
         public string TypeOfOtherAnimals { get { return typeOfOtherAnimals; } set { typeOfOtherAnimals = value; } }
         public Animal InterestedInAdopting { get { return interestedInAdopting; } set { interestedInAdopting = value; } }
 
-        public Adopter()
+        public Adopter(string id, string firstName, char middleInitial, string lastName, string email, string phone, string personality, 
+            bool smallChildren, bool otherAnimals, int numberOfOtherAnimals, string typeOfOtherAnimals, Animal interestedInAdopting)
         {
-
+            this.id = id;
+            this.firstName = firstName;
+            this.middleInitial = middleInitial;
+            this.lastName = lastName;
+            this.email = email;
+            this.phone = phone;
+            billing = new CreditCard(this);
+            this.personality = personality;
+            this.smallChildren = smallChildren;
+            this.otherAnimals = otherAnimals;
+            this.numberOfOtherAnimals = numberOfOtherAnimals;
+            this.typeOfOtherAnimals = typeOfOtherAnimals;
+            this.interestedInAdopting = interestedInAdopting;
         }
     }
 }
