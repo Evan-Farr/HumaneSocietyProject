@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HumaneSociety" Class="HumaneSocietyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-N9TRFDL5;Initial Catalog=HumaneSociety;Integrated Security=True" SettingsObjectName="HumaneSociety.Properties.Settings" SettingsPropertyName="HumaneSocietyConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Adopters" Member="Adopters">
+    <Type Name="Adopter">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="First_Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Middle_Initial" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Street_Address" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Billing_Info" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Personality_Profile" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Small_Children" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Animals" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Number_Of_Animals" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Type_Of_Animals" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Animals_Interested_In_Adopting" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Animal_Adopter" Member="Animal" ThisKey="Animals_Interested_In_Adopting" OtherKey="ID" Type="Animal" IsForeignKey="true" />
+      <Association Name="Billing_Adopter" Member="Billing" ThisKey="Billing_Info" OtherKey="ID" Type="Billing" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Animals" Member="Animals">
+    <Type Name="Animal">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HS_ID" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Breed" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Size" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="Personality_Type" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Special_Needs" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Food_Requirments" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spayed_or_Neutered" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Recieved_Shots" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Adoption_Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Animal_Adopter" Member="Adopters" ThisKey="ID" OtherKey="Animals_Interested_In_Adopting" Type="Adopter" />
+      <Association Name="Animal_Room" Member="Rooms" ThisKey="ID" OtherKey="Current_Animal" Type="Room" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Billing" Member="Billings">
+    <Type Name="Billing">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name_On_Card" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Card_Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Expiration" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="CVC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Billing_Address" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Billing_Adopter" Member="Adopters" ThisKey="ID" OtherKey="Billing_Info" Type="Adopter" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rooms" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Room_Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Is_Available" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Current_Animal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Animal_Room" Member="Animal" ThisKey="Current_Animal" OtherKey="ID" Type="Animal" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
