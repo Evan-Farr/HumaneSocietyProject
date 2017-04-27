@@ -1,6 +1,6 @@
 create table Animals
 (ID int identity(1,1) Primary Key,
-Unique_ID varchar(6) not null,
+HS_ID varchar(6) not null,
 Name varchar(max) not null,
 Gender varchar(6) not null,
 Age int,
@@ -12,13 +12,23 @@ Food_Requirments varchar(max),
 Spayed_or_Neutered bit,
 Recieved_Shots bit,
 Adoption_Price float not null,
-Category varchar(max) not null,
+Category varchar(max) not null
 );
 
-create table Room
+create table Rooms
 (ID int identity(1,1) Primary Key,
 Room_Number int not null, 
-Available bit not null,
+Is_Available bit not null,
+Current_Animal int Foreign Key (Current_Animal) references dbo.Animals(ID)
+);
+
+create table Billing
+(ID int identity(1,1) Primary key,
+Name_On_Card varchar(max) not null,
+Card_Number int not null,
+Expiration varchar(5) not null,
+CVC int not null,
+Billing_Address varchar(max) not null
 );
 
 create table Adopters
@@ -29,10 +39,11 @@ Last_Name varchar(max) not null,
 Street_Address varchar(max) not null,
 Email varchar(max),
 Phone int,
-Billing_Info varchar(max),
+Billing_Info int foreign key(Billing_Info) references dbo.Billing(ID),
 Personality_Profile varchar(max) not null,
 Small_Children bit,
 Animals bit,
 Number_Of_Animals int,
 Type_Of_Animals varchar(max),
+Animals_Interested_In_Adopting int Foreign Key (Animals_Interested_In_Adopting) references dbo.Animals(ID)
 );

@@ -9,16 +9,18 @@ namespace HumaneSociety
     public class HumaneSociety
     {
         public Dictionary<Animal, string> animals;
+        public Dictionary<Adopter, string> adopters;
         public List<Room> rooms;
 
         public HumaneSociety()
         {
             animals = new Dictionary<Animal, string>();
+            adopters = new Dictionary<Adopter, string>();
             rooms = new List<Room>();
             BuildRooms(10);
         }
 
-        public string GenerateUniqueID()
+        public string GenerateUniqueAnimalID()
         {
             Random random = new Random();
             int newRandom = random.Next(100000);
@@ -26,7 +28,22 @@ namespace HumaneSociety
             {
                 if (newRandom.Equals(i))
                 {
-                    GenerateUniqueID();
+                    GenerateUniqueAnimalID();
+                }
+            }
+            string ID = newRandom.ToString();
+            return ID;
+        }
+
+        public string GenerateUniqueAdopterID()
+        {
+            Random random = new Random();
+            int newRandom = random.Next(100000);
+            for (int i = 0; i < adopters.Count; i++)
+            {
+                if (newRandom.Equals(i))
+                {
+                    GenerateUniqueAdopterID();
                 }
             }
             string ID = newRandom.ToString();
