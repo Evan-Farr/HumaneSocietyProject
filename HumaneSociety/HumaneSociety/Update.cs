@@ -6,36 +6,26 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    public static class Connection
+    public static class Update
     {
-        public static void SaveChanges()
+        public static void AddAnimal()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-            try
-            {
-                database.SubmitChanges();
-            }catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+
         }
 
-        public static void SearchBySpecies()
+        public static void AddAdopter()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+
         }
 
-        public static void SearchByAnimalName()
+        public static void RemoveAnimal()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
         }
 
-        public static void SearchByCharacteristics()
-        {
-            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-        }
-
-        public static void SearchByAdopterName()
+        public static void RemoveAdopter()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
         }

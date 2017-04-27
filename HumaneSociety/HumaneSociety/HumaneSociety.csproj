@@ -69,6 +69,7 @@
     <Compile Include="Rabbit.cs" />
     <Compile Include="Rooms.cs" />
     <Compile Include="UI.cs" />
+    <Compile Include="Update.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
