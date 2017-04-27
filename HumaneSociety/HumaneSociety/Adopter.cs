@@ -23,7 +23,7 @@ namespace HumaneSociety
         private string typeOfOtherAnimals;
         private Animal interestedInAdopting;
 
-        public string ID { get { return id; } }
+        public string ID { get { return id; } set { id = value; } }
         public string FirstName { get { return firstName; } set { firstName = value; } }
         public char MiddleInitial { get { return middleInitial; } set { middleInitial = value; } }
         public string LastName { get { return lastName; } set { lastName = value; } }

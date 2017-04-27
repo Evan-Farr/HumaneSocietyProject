@@ -48,7 +48,7 @@ namespace HumaneSociety
 
         public string GetCardExpiration()
         {
-            Console.WriteLine("Enter the credit card's expiration date.");
+            Console.WriteLine("\nEnter the credit card's expiration date.");
             Console.WriteLine("Example: (month/year) => '06/18'");
             expiration = Console.ReadLine();
             return expiration;
@@ -56,7 +56,7 @@ namespace HumaneSociety
 
         public int GetCVC()
         {
-            Console.WriteLine("Enter the credit card's CVC number.");
+            Console.WriteLine("\nEnter the credit card's CVC number.");
             Console.WriteLine("Example: '676'");
             cvc = int.Parse(Console.ReadLine());
             return cvc;
@@ -64,7 +64,7 @@ namespace HumaneSociety
 
         public string GetBillingAddress(Adopter adopter)
         {
-            Console.WriteLine($"Enter {adopter.FirstName}'s billing address.");
+            Console.WriteLine($"\nEnter {adopter.FirstName}'s billing address.");
             Console.WriteLine("Example: '676'");
             billingAddress = Console.ReadLine();
             return billingAddress;
