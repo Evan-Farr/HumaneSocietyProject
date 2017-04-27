@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HumaneSociety" Class="HumaneSocietyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-N9TRFDL5;Initial Catalog=HumaneSociety;Integrated Security=True" SettingsObjectName="HumaneSociety.Properties.Settings" SettingsPropertyName="HumaneSocietyConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Adopters" Member="Adopters">
+  <Table Name="dbo.Adopter" Member="Adopters">
     <Type Name="Adopter">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="First_Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
@@ -20,10 +20,10 @@
       <Association Name="Billing_Adopter" Member="Billing" ThisKey="Billing_Info" OtherKey="ID" Type="Billing" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Animals" Member="Animals">
+  <Table Name="dbo.Animal" Member="Animals">
     <Type Name="Animal">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="HS_ID" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Species" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Gender" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
       <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />

@@ -30,18 +30,18 @@ namespace HumaneSociety
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAdopter(Adopters instance);
-    partial void UpdateAdopter(Adopters instance);
-    partial void DeleteAdopter(Adopters instance);
+    partial void InsertAdopter(Adopter instance);
+    partial void UpdateAdopter(Adopter instance);
+    partial void DeleteAdopter(Adopter instance);
     partial void InsertAnimal(Animal instance);
     partial void UpdateAnimal(Animal instance);
     partial void DeleteAnimal(Animal instance);
     partial void InsertBilling(Billing instance);
     partial void UpdateBilling(Billing instance);
     partial void DeleteBilling(Billing instance);
-    partial void InsertRoom(Rooms instance);
-    partial void UpdateRoom(Rooms instance);
-    partial void DeleteRoom(Rooms instance);
+    partial void InsertRoom(Room instance);
+    partial void UpdateRoom(Room instance);
+    partial void DeleteRoom(Room instance);
     #endregion
 		
 		public HumaneSocietyDataContext() : 
@@ -74,11 +74,11 @@ namespace HumaneSociety
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Adopters> Adopters
+		public System.Data.Linq.Table<Adopter> Adopters
 		{
 			get
 			{
-				return this.GetTable<Adopters>();
+				return this.GetTable<Adopter>();
 			}
 		}
 		
@@ -98,17 +98,17 @@ namespace HumaneSociety
 			}
 		}
 		
-		public System.Data.Linq.Table<Rooms> Rooms
+		public System.Data.Linq.Table<Room> Rooms
 		{
 			get
 			{
-				return this.GetTable<Rooms>();
+				return this.GetTable<Room>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Adopters")]
-	public partial class Adopters : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Adopter")]
+	public partial class Adopter : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -179,7 +179,7 @@ namespace HumaneSociety
     partial void OnAnimals_Interested_In_AdoptingChanged();
     #endregion
 		
-		public Adopters()
+		public Adopter()
 		{
 			this._Animal = default(EntityRef<Animal>);
 			this._Billing = default(EntityRef<Billing>);
@@ -563,7 +563,7 @@ namespace HumaneSociety
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Animals")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Animal")]
 	public partial class Animal : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -571,7 +571,7 @@ namespace HumaneSociety
 		
 		private int _ID;
 		
-		private string _HS_ID;
+		private string _Species;
 		
 		private string _Name;
 		
@@ -597,9 +597,9 @@ namespace HumaneSociety
 		
 		private string _Category;
 		
-		private EntitySet<Adopters> _Adopters;
+		private EntitySet<Adopter> _Adopters;
 		
-		private EntitySet<Rooms> _Rooms;
+		private EntitySet<Room> _Rooms;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -607,8 +607,8 @@ namespace HumaneSociety
     partial void OnCreated();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnHS_IDChanging(string value);
-    partial void OnHS_IDChanged();
+    partial void OnSpeciesChanging(string value);
+    partial void OnSpeciesChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
     partial void OnGenderChanging(string value);
@@ -637,8 +637,8 @@ namespace HumaneSociety
 		
 		public Animal()
 		{
-			this._Adopters = new EntitySet<Adopters>(new Action<Adopters>(this.attach_Adopters), new Action<Adopters>(this.detach_Adopters));
-			this._Rooms = new EntitySet<Rooms>(new Action<Rooms>(this.attach_Rooms), new Action<Rooms>(this.detach_Rooms));
+			this._Adopters = new EntitySet<Adopter>(new Action<Adopter>(this.attach_Adopters), new Action<Adopter>(this.detach_Adopters));
+			this._Rooms = new EntitySet<Room>(new Action<Room>(this.attach_Rooms), new Action<Room>(this.detach_Rooms));
 			OnCreated();
 		}
 		
@@ -662,22 +662,22 @@ namespace HumaneSociety
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HS_ID", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
-		public string HS_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Species", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Species
 		{
 			get
 			{
-				return this._HS_ID;
+				return this._Species;
 			}
 			set
 			{
-				if ((this._HS_ID != value))
+				if ((this._Species != value))
 				{
-					this.OnHS_IDChanging(value);
+					this.OnSpeciesChanging(value);
 					this.SendPropertyChanging();
-					this._HS_ID = value;
-					this.SendPropertyChanged("HS_ID");
-					this.OnHS_IDChanged();
+					this._Species = value;
+					this.SendPropertyChanged("Species");
+					this.OnSpeciesChanged();
 				}
 			}
 		}
@@ -923,7 +923,7 @@ namespace HumaneSociety
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Animal_Adopter", Storage="_Adopters", ThisKey="ID", OtherKey="Animals_Interested_In_Adopting")]
-		public EntitySet<Adopters> Adopters
+		public EntitySet<Adopter> Adopters
 		{
 			get
 			{
@@ -936,7 +936,7 @@ namespace HumaneSociety
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Animal_Room", Storage="_Rooms", ThisKey="ID", OtherKey="Current_Animal")]
-		public EntitySet<Rooms> Rooms
+		public EntitySet<Room> Rooms
 		{
 			get
 			{
@@ -968,25 +968,25 @@ namespace HumaneSociety
 			}
 		}
 		
-		private void attach_Adopters(Adopters entity)
+		private void attach_Adopters(Adopter entity)
 		{
 			this.SendPropertyChanging();
 			entity.Animal = this;
 		}
 		
-		private void detach_Adopters(Adopters entity)
+		private void detach_Adopters(Adopter entity)
 		{
 			this.SendPropertyChanging();
 			entity.Animal = null;
 		}
 		
-		private void attach_Rooms(Rooms entity)
+		private void attach_Rooms(Room entity)
 		{
 			this.SendPropertyChanging();
 			entity.Animal = this;
 		}
 		
-		private void detach_Rooms(Rooms entity)
+		private void detach_Rooms(Room entity)
 		{
 			this.SendPropertyChanging();
 			entity.Animal = null;
@@ -1011,7 +1011,7 @@ namespace HumaneSociety
 		
 		private string _Billing_Address;
 		
-		private EntitySet<Adopters> _Adopters;
+		private EntitySet<Adopter> _Adopters;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1033,7 +1033,7 @@ namespace HumaneSociety
 		
 		public Billing()
 		{
-			this._Adopters = new EntitySet<Adopters>(new Action<Adopters>(this.attach_Adopters), new Action<Adopters>(this.detach_Adopters));
+			this._Adopters = new EntitySet<Adopter>(new Action<Adopter>(this.attach_Adopters), new Action<Adopter>(this.detach_Adopters));
 			OnCreated();
 		}
 		
@@ -1158,7 +1158,7 @@ namespace HumaneSociety
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Billing_Adopter", Storage="_Adopters", ThisKey="ID", OtherKey="Billing_Info")]
-		public EntitySet<Adopters> Adopters
+		public EntitySet<Adopter> Adopters
 		{
 			get
 			{
@@ -1190,13 +1190,13 @@ namespace HumaneSociety
 			}
 		}
 		
-		private void attach_Adopters(Adopters entity)
+		private void attach_Adopters(Adopter entity)
 		{
 			this.SendPropertyChanging();
 			entity.Billing = this;
 		}
 		
-		private void detach_Adopters(Adopters entity)
+		private void detach_Adopters(Adopter entity)
 		{
 			this.SendPropertyChanging();
 			entity.Billing = null;
@@ -1204,7 +1204,7 @@ namespace HumaneSociety
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rooms")]
-	public partial class Rooms : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Room : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1233,7 +1233,7 @@ namespace HumaneSociety
     partial void OnCurrent_AnimalChanged();
     #endregion
 		
-		public Rooms()
+		public Room()
 		{
 			this._Animal = default(EntityRef<Animal>);
 			OnCreated();
