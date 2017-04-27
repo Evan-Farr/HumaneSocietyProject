@@ -23,11 +23,43 @@ namespace HumaneSociety
         public static void SearchBySpecies()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            Console.WriteLine("\nInput the species you are looking for: ");
+            string species = Console.ReadLine().ToLower();
+            var matches = database.Animals.Where(n => n.Species.ToLower() == species).OrderBy(f => f.Name).Select(s => s);
+            if (matches != null)
+            {
+                Console.WriteLine("SEARCH RESULTS: ");
+                foreach (var match in matches)
+                {
+                    Console.WriteLine("> " + match + "\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("> No Matches Found.");
+                UI.Menu();
+            }
         }
 
         public static void SearchByAnimalName()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            Console.WriteLine("\nInput the animal's name: ");
+            string name = Console.ReadLine().ToLower();
+            var matches = database.Animals.Where(n => n.Name.ToLower() == name).OrderBy(f => f.Name).Select(s => s);
+            if (matches != null)
+            {
+                Console.WriteLine("SEARCH RESULTS: ");
+                foreach (var match in matches)
+                {
+                    Console.WriteLine("> " + match + "\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("> No Matches Found.");
+                UI.Menu();
+            }
         }
 
         public static void SearchByCharacteristics()
@@ -139,13 +171,16 @@ namespace HumaneSociety
         public static void AddAnimal()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-
+            Animal animal = UI.GetNewAnimalInfo();
+            //database.InsertAnimal(animal);
+            database.Animals.InsertOnSubmit(animal);
         }
 
         public static void AddAdopter()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-
+            Adopter adopter = UI.GetNewAdopterInfo();
+            database.Adopters.InsertOnSubmit(adopter);
         }
 
         public static void RemoveAnimal()

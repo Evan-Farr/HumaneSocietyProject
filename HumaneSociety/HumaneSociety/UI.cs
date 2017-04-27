@@ -117,7 +117,7 @@ namespace HumaneSociety
         public static Animal GetKnownCharacteristics()
         {
             Animal animal = new Animal();
-            Console.WriteLine("For each characteristic, enter search term.");
+            Console.WriteLine("\nFor each characteristic, enter search term.");
             Console.WriteLine("*If you don't know a certain characteristic, enter 'NA' as an answer.");
             Console.WriteLine("1. Species: ");
             animal.Species = Console.ReadLine().ToLower();
@@ -129,15 +129,79 @@ namespace HumaneSociety
             animal.Age = int.Parse(Console.ReadLine());
             Console.WriteLine("5. Breed: ");
             animal.Breed = Console.ReadLine().ToLower();
-            Console.WriteLine("6. Size: ");
+            Console.WriteLine("6. Size as Adult: ");
             animal.Size = Console.ReadLine().ToLower();
             Console.WriteLine("7. Personality Type: ");
             animal.Personality_Type = Console.ReadLine().ToLower();
-            Console.WriteLine("5. Has Special Needs (enter 'true' or 'false'): ");
+            Console.WriteLine("8. Has Special Needs (enter 'true' or 'false'): ");
             animal.Special_Needs = bool.Parse(Console.ReadLine().ToLower());
-            Console.WriteLine("7. Received Shots (enter 'true' or 'false'): ");
+            Console.WriteLine("9. Received Shots (enter 'true' or 'false'): ");
             animal.Recieved_Shots = bool.Parse(Console.ReadLine().ToLower());
             return animal;
+        }
+
+        public static Animal GetNewAnimalInfo()
+        {
+            Animal animal = new Animal();
+            Console.WriteLine("\nFor each characteristic, enter information.");
+            Console.WriteLine("*If you don't know a certain characteristic, enter 'NA' as an answer.");
+            Console.WriteLine("1. Species: ");
+            animal.Species = Console.ReadLine().ToLower();
+            Console.WriteLine("2. Animal's Name: ");
+            animal.Name = Console.ReadLine().ToLower();
+            Console.WriteLine("3. Gender: ");
+            animal.Gender = Console.ReadLine().ToLower();
+            Console.WriteLine("4. Age: ");
+            animal.Age = int.Parse(Console.ReadLine());
+            Console.WriteLine("5. Breed: ");
+            animal.Breed = Console.ReadLine().ToLower();
+            Console.WriteLine("6. Size as Adult: ");
+            animal.Size = Console.ReadLine().ToLower();
+            Console.WriteLine("7. Personality Type: ");
+            animal.Personality_Type = Console.ReadLine().ToLower();
+            Console.WriteLine("8. Has Special Needs (enter 'true' or 'false'): ");
+            animal.Special_Needs = bool.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("9. Food Requirements: ");
+            animal.Food_Requirments = Console.ReadLine().ToLower();
+            Console.WriteLine("10. Is Spayed or Neutered (enter 'true' or 'false'): ");
+            animal.Spayed_or_Neutered = bool.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("11. Received Shots (enter 'true' or 'false'): ");
+            animal.Recieved_Shots = bool.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("12. Animal Category (Options = Dog/Cat/Small-Animal): ");
+            animal.Category = Console.ReadLine().ToLower();
+            return animal;
+        }
+
+        public static Adopter GetNewAdopterInfo()
+        {
+            Adopter adopter = new Adopter();
+            Console.WriteLine("\nFor each characteristic, enter information.");
+            Console.WriteLine("*If you don't know a certain characteristic, enter 'NA' as an answer.");
+            Console.WriteLine("1. First Name: ");
+            adopter.First_Name = Console.ReadLine().ToLower();
+            Console.WriteLine("2. Middle Initial: ");
+            adopter.Middle_Initial = Console.ReadLine().ToLower();
+            Console.WriteLine("3. Last Name: ");
+            adopter.Last_Name = Console.ReadLine().ToLower();
+            Console.WriteLine("4. Street Address: ");
+            adopter.Street_Address = Console.ReadLine();
+            Console.WriteLine("5. Email: ");
+            adopter.Email = Console.ReadLine().ToLower();
+            Console.WriteLine("6. Phone Number: ");
+            adopter.Phone = int.Parse(Console.ReadLine());
+            Console.WriteLine("7. Personality Profile: ");
+            adopter.Personality_Profile = Console.ReadLine().ToLower();
+            Console.WriteLine("8. Has Small Children (enter 'true' or 'false'): ");
+            adopter.Small_Children = bool.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("10. Has other Animals (enter 'true' or 'false'): ");
+            adopter.Animals = bool.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("11. Number of other Animals: ");
+            adopter.Number_Of_Animals = int.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("12. Type of other Animals: ");
+            adopter.Type_Of_Animals = Console.ReadLine().ToLower();
+            Console.WriteLine("12. ID of animal interested in adopting: ");
+            adopter.Animals_Interested_In_Adopting = int.Parse(Console.ReadLine().ToLower());
+            return adopter;
         }
     }
 }
