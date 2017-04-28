@@ -253,9 +253,12 @@ namespace HumaneSociety
                 }
             }
             IEnumerable<Animal> Results = results.Distinct().ToList();
-            //var groupedResults = Results.GroupBy(q => q.Species).Select(k => k);
             Console.WriteLine("\nSEARCH RESULTS: \n");
-            if(Results != null)
+            if(Results.Count().Equals(0))
+            {
+                Console.WriteLine("> No Matches Found.\n\n");
+            }
+            else
             {
                 foreach (var result in Results)
                 {
@@ -274,9 +277,6 @@ namespace HumaneSociety
                     Console.WriteLine("> Adoption Price: " + result.Adoption_Price);
                     Console.WriteLine("> Category: " + result.Category + "\n\n");
                 }
-            }else
-            {
-                Console.WriteLine("> No Matches Found.\n\n");
             }
             Console.WriteLine("Press [ENTER] to continue....");
             Console.ReadKey();
