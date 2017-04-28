@@ -140,7 +140,7 @@ namespace HumaneSociety
         {
             Animal animal = new Animal();
             Console.WriteLine("\nFor each characteristic, enter search term.");
-            Console.WriteLine("*If you don't know a certain characteristic, enter 'NA' as an answer.");
+            Console.WriteLine("*If you don't know a certain characteristic, leave input blank and press [ENTER].");
             Console.WriteLine("1. Species: ");
             animal.Species = Console.ReadLine().ToLower();
             Console.WriteLine("2. Animal's Name: ");
@@ -148,7 +148,9 @@ namespace HumaneSociety
             Console.WriteLine("3. Gender: ");
             animal.Gender = Console.ReadLine().ToLower();
             Console.WriteLine("4. Age: ");
-            animal.Age = int.Parse(Console.ReadLine());
+            int result;
+            bool isNumber = int.TryParse(Console.ReadLine(), out result);
+            animal.Age = result;
             Console.WriteLine("5. Breed: ");
             animal.Breed = Console.ReadLine().ToLower();
             Console.WriteLine("6. Size as Adult: ");
@@ -156,9 +158,24 @@ namespace HumaneSociety
             Console.WriteLine("7. Personality Type: ");
             animal.Personality_Type = Console.ReadLine().ToLower();
             Console.WriteLine("8. Has Special Needs (enter 'true' or 'false'): ");
-            animal.Special_Needs = bool.Parse(Console.ReadLine().ToLower());
+            string input = Console.ReadLine().ToLower();
+            if(input == "yes")
+            {
+                animal.Special_Needs = true;
+            }else if(input == "no") 
+            {
+                animal.Special_Needs = false;
+            }
             Console.WriteLine("9. Received Shots (enter 'true' or 'false'): ");
-            animal.Recieved_Shots = bool.Parse(Console.ReadLine().ToLower());
+            string input2 = Console.ReadLine().ToLower();
+            if (input2 == "yes")
+            {
+                animal.Recieved_Shots = true;
+            }
+            else if (input2 == "no")
+            {
+                animal.Recieved_Shots = false;
+            }
             Console.Clear();
             return animal;
         }

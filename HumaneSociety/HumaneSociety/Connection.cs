@@ -24,21 +24,33 @@ namespace HumaneSociety
         public static void SearchBySpecies()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-            Console.WriteLine("\nEnter the species you are looking for: ");
+            Console.WriteLine("Enter the species you are looking for: ");
             string species = Console.ReadLine().ToLower();
-            var matches = database.Animals.Where(n => n.Species.ToLower() == species).OrderBy(f => f.Name).Select(s => s).ToList();
+            var matches = database.Animals.Where(n => n.Species.ToLower() == species).OrderBy(f => f.ID).Select(s => s).ToList();
             if (matches != null)
             {
-                Console.WriteLine("\nSEARCH RESULTS: ");
+                Console.WriteLine("\nSEARCH RESULTS: \n");
                 foreach (var match in matches)
                 {
-                    Console.WriteLine("> " + match + "\n");
+                    Console.WriteLine("> ID: " + match.ID);
+                    Console.WriteLine("> Species: " + match.Species);
+                    Console.WriteLine("> Name: " + match.Name);
+                    Console.WriteLine("> Gender: " + match.Gender);
+                    Console.WriteLine("> Age: " + match.Age);
+                    Console.WriteLine("> Breed: " + match.Breed);
+                    Console.WriteLine("> Adult Size: " + match.Size);
+                    Console.WriteLine("> Personality Type: " + match.Personality_Type);
+                    Console.WriteLine("> Special-Needs: " + match.Special_Needs);
+                    Console.WriteLine("> Food Requirements: " + match.Food_Requirments);
+                    Console.WriteLine("> Spayed/Neutered: " + match.Spayed_or_Neutered);
+                    Console.WriteLine("> Recieved Shots: " + match.Recieved_Shots);
+                    Console.WriteLine("> Adoption Price: " + match.Adoption_Price);
+                    Console.WriteLine("> Category: " + match.Category + "\n\n");
                 }
             }
             else
             {
-                Console.WriteLine("> No Matches Found.");
-                UI.Menu();
+                Console.WriteLine("> No Matches Found.\n\n");
             }
             Console.WriteLine("Press [ENTER] to continue....");
             Console.ReadKey();
@@ -51,20 +63,36 @@ namespace HumaneSociety
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
             Console.WriteLine("\nInput the animal's name: ");
             string name = Console.ReadLine().ToLower();
-            var matches = database.Animals.Where(n => n.Name.ToLower() == name).OrderBy(f => f.Name).Select(s => s);
+            var matches = database.Animals.Where(n => n.Name.ToLower() == name).OrderBy(f => f.Name).Select(s => s).ToList();
             if (matches != null)
             {
-                Console.WriteLine("SEARCH RESULTS: ");
+                Console.WriteLine("\nSEARCH RESULTS: \n");
                 foreach (var match in matches)
                 {
-                    Console.WriteLine("> " + match + "\n");
+                    Console.WriteLine("> ID: " + match.ID);
+                    Console.WriteLine("> Species: " + match.Species);
+                    Console.WriteLine("> Name: " + match.Name);
+                    Console.WriteLine("> Gender: " + match.Gender);
+                    Console.WriteLine("> Age: " + match.Age);
+                    Console.WriteLine("> Breed: " + match.Breed);
+                    Console.WriteLine("> Adult Size: " + match.Size);
+                    Console.WriteLine("> Personality Type: " + match.Personality_Type);
+                    Console.WriteLine("> Special-Needs: " + match.Special_Needs);
+                    Console.WriteLine("> Food Requirements: " + match.Food_Requirments);
+                    Console.WriteLine("> Spayed/Neutered: " + match.Spayed_or_Neutered);
+                    Console.WriteLine("> Recieved Shots: " + match.Recieved_Shots);
+                    Console.WriteLine("> Adoption Price: " + match.Adoption_Price);
+                    Console.WriteLine("> Category: " + match.Category + "\n\n");
                 }
             }
             else
             {
-                Console.WriteLine("> No Matches Found.");
-                UI.Menu();
+                Console.WriteLine("> No Matches Found.\n\n");
             }
+            Console.WriteLine("Press [ENTER] to continue....");
+            Console.ReadKey();
+            Console.Clear();
+            UI.Menu();
         }
 
         public static void SearchByCharacteristics()
@@ -87,6 +115,16 @@ namespace HumaneSociety
                 {
                     results.Add(match);
                 }
+                if (results.Count != 0 && animal.Name != "")
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    { 
+                        if (results[i].Name.ToLower() != animal.Name)
+                        {
+                            results.Remove(results[i]);
+                        }
+                    }
+                }
             }
             var matches3 = database.Animals.Where(g => g.Gender.ToLower() == animal.Gender);
             if (matches3 != null)
@@ -94,6 +132,16 @@ namespace HumaneSociety
                 foreach (var match in matches3)
                 {
                     results.Add(match);
+                }
+                if (results.Count != 0 && animal.Gender != "")
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        if (results[i].Gender.ToLower() != animal.Gender)
+                        {
+                            results.Remove(results[i]);
+                        }
+                    }
                 }
             }
             var matches4 = database.Animals.Where(p => p.Age == animal.Age);
@@ -103,6 +151,16 @@ namespace HumaneSociety
                 {
                     results.Add(match);
                 }
+                if (results.Count != 0 && animal.Age != 0)
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        if (results[i].Age != animal.Age)
+                        {
+                            results.Remove(results[i]);
+                        }
+                    }
+                }
             }
             var matches5 = database.Animals.Where(b => b.Breed.ToLower() == animal.Breed);
             if (matches5 != null)
@@ -110,6 +168,16 @@ namespace HumaneSociety
                 foreach (var match in matches5)
                 {
                     results.Add(match);
+                }
+                if (results.Count != 0 && animal.Breed != "" )
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        if (results[i].Breed.ToLower() != animal.Breed)
+                        {
+                            results.Remove(results[i]);
+                        }
+                    }
                 }
             }
             var matches6 = database.Animals.Where(s => s.Size.ToLower() == animal.Size);
@@ -119,6 +187,16 @@ namespace HumaneSociety
                 {
                     results.Add(match);
                 }
+                if (results.Count != 0 && animal.Size != "")
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        if (results[i].Size.ToLower() != animal.Size)
+                        {
+                            results.Remove(results[i]);
+                        }
+                    }
+                }
             }
             var matches7 = database.Animals.Where(t => t.Personality_Type.ToLower() == animal.Personality_Type);
             if (matches7 != null)
@@ -126,6 +204,16 @@ namespace HumaneSociety
                 foreach (var match in matches7)
                 {
                     results.Add(match);
+                }
+                if (results.Count != 0 && animal.Personality_Type != "")
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        if (results[i].Personality_Type.ToLower() != animal.Personality_Type)
+                        {
+                            results.Remove(results[i]);
+                        }
+                    }
                 }
             }
             var matches8 = database.Animals.Where(z => z.Special_Needs == animal.Special_Needs);
@@ -135,6 +223,16 @@ namespace HumaneSociety
                 {
                     results.Add(match);
                 }
+                if (results.Count != 0 && animal.Special_Needs != null)
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        if (results[i].Special_Needs != animal.Special_Needs)
+                        {
+                            results.Remove(results[i]);
+                        }
+                    }
+                }
             }
             var matches9 = database.Animals.Where(y => y.Recieved_Shots == animal.Recieved_Shots);
             if (matches9 != null)
@@ -143,13 +241,47 @@ namespace HumaneSociety
                 {
                     results.Add(match);
                 }
+                if (results.Count != 0 && animal.Special_Needs != null)
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        if (results[i].Recieved_Shots != animal.Recieved_Shots)
+                        {
+                            results.Remove(results[i]);
+                        }
+                    }
+                }
             }
-            IEnumerable<Animal> Results = results.Distinct();
-            var groupedResults = Results.GroupBy(q => q.Species).ToList();
-            foreach(var result in groupedResults)
+            IEnumerable<Animal> Results = results.Distinct().ToList();
+            //var groupedResults = Results.GroupBy(q => q.Species).Select(k => k);
+            Console.WriteLine("\nSEARCH RESULTS: \n");
+            if(Results != null)
             {
-                Console.WriteLine("> " + result + "\n");
+                foreach (var result in Results)
+                {
+                    Console.WriteLine("> ID: " + result.ID);
+                    Console.WriteLine("> Species: " + result.Species);
+                    Console.WriteLine("> Name: " + result.Name);
+                    Console.WriteLine("> Gender: " + result.Gender);
+                    Console.WriteLine("> Age: " + result.Age);
+                    Console.WriteLine("> Breed: " + result.Breed);
+                    Console.WriteLine("> Adult Size: " + result.Size);
+                    Console.WriteLine("> Personality Type: " + result.Personality_Type);
+                    Console.WriteLine("> Special-Needs: " + result.Special_Needs);
+                    Console.WriteLine("> Food Requirements: " + result.Food_Requirments);
+                    Console.WriteLine("> Spayed/Neutered: " + result.Spayed_or_Neutered);
+                    Console.WriteLine("> Recieved Shots: " + result.Recieved_Shots);
+                    Console.WriteLine("> Adoption Price: " + result.Adoption_Price);
+                    Console.WriteLine("> Category: " + result.Category + "\n\n");
+                }
+            }else
+            {
+                Console.WriteLine("> No Matches Found.\n\n");
             }
+            Console.WriteLine("Press [ENTER] to continue....");
+            Console.ReadKey();
+            Console.Clear();
+            UI.Menu();
         }
 
         public static void SearchByAdopterName()
