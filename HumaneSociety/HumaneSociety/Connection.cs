@@ -290,19 +290,35 @@ namespace HumaneSociety
             Console.WriteLine("\nInput adopter's last name: ");
             string name = Console.ReadLine().ToLower();
             var matches = database.Adopters.Where(n => n.Last_Name.ToLower() == name).OrderBy(f => f.First_Name).Select(s => s);
-            if(matches != null)
+            if (matches != null)
             {
-                Console.WriteLine("SEARCH RESULTS: ");
+                Console.WriteLine("\nSEARCH RESULTS: \n");
                 foreach (var match in matches)
                 {
-                    Console.WriteLine("> " + match + "\n");
+                    Console.WriteLine("> ID: " + match.ID);
+                    Console.WriteLine("> First Name: " + match.First_Name);
+                    Console.WriteLine("> Middle Initial: " + match.Middle_Initial);
+                    Console.WriteLine("> Last Name: " + match.Last_Name);
+                    Console.WriteLine("> Street Address: " + match.Street_Address);
+                    Console.WriteLine("> Email: " + match.Email);
+                    Console.WriteLine("> Phone Number: " + match.Phone);
+                    Console.WriteLine("> Billing Info: " + match.Billing);
+                    Console.WriteLine("> Personality Profile: " + match.Personality_Profile);
+                    Console.WriteLine("> Has small children: " + match.Small_Children);
+                    Console.WriteLine("> Has other animals: " + match.Animals);
+                    Console.WriteLine("> Number of other animals: " + match.Number_Of_Animals);
+                    Console.WriteLine("> Type of other animals: " + match.Type_Of_Animals);
+                    Console.WriteLine("> ID of animal interested in adopting: " + match.Animals_Interested_In_Adopting);
                 }
-            }else
-            {
-                Console.WriteLine("> No Matches Found.");
-                UI.Menu();
             }
-            
+            else
+            {
+                Console.WriteLine("> No Matches Found.\n\n");
+            }
+            Console.WriteLine("Press [ENTER] to continue....");
+            Console.ReadKey();
+            Console.Clear();
+            UI.Menu();
         }
 
         public static void AddAnimal()
@@ -313,7 +329,7 @@ namespace HumaneSociety
             try
             {
                 database.SubmitChanges();
-                Console.WriteLine($"\n! {animal.Name} has successfully been added as a new guest !");
+                Console.WriteLine($"\n! {animal.Name} has successfully been added as a new guest !\n\n");
             }catch(Exception e)
             {
                 Console.WriteLine(e);
@@ -321,7 +337,7 @@ namespace HumaneSociety
             }
             finally
             {
-                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.WriteLine("Hit [ENTER] to continue....");
                 Console.ReadKey();
                 Console.Clear();
                 UI.Menu();
@@ -336,16 +352,16 @@ namespace HumaneSociety
             try
             {
                 database.SubmitChanges();
-                Console.WriteLine($"\n! {adopter.First_Name} {adopter.Last_Name} has successfully been added as an adopter !");
+                Console.WriteLine($"\n! {adopter.First_Name} {adopter.Last_Name} has successfully been added as an adopter !\n\n");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                Console.WriteLine($"Error: A problem occured while saving {adopter.First_Name} {adopter.Last_Name} to the database.");
+                Console.WriteLine($"\nError: A problem occured while saving {adopter.First_Name} {adopter.Last_Name} to the database.\n\n");
             }
             finally
             {
-                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.WriteLine("Hit [ENTER] to continue....");
                 Console.ReadKey();
                 Console.Clear();
                 UI.Menu();
@@ -369,25 +385,48 @@ namespace HumaneSociety
             string answer = Console.ReadLine();
             if(answer == "no")
             {
-                Console.WriteLine("Here are all the animals who have not recieved shots: ");
+                Console.Clear();
+                var noShots = new List<Animal>();
+                var check = new List<Animal>();
                 var matches = database.Animals.Where(s => s.Recieved_Shots == false).OrderBy(n => n.ID);
                 if(matches == null)
                 {
                     Console.WriteLine("All animals are currently up-to-date on vaccinations.\n");
                 }else
                 {
-                    foreach(var match in matches)
+                    Console.WriteLine("Here are all the animals who have not recieved shots: \n");
+                    foreach (var match in matches)
                     {
-                        Console.WriteLine("> " + match + "\n");
+                        Console.WriteLine("> ID: " + match.ID + " => Species: " + match.Species + " => Name: " + match.Name + "\n");
+                        noShots.Add(match);
+                    }
+                    Console.WriteLine("\nEnter the animals ID: ");
+                    int choice = int.Parse(Console.ReadLine());
+                    for(int i = 0; i < noShots.Count; i++)
+                    {
+                        if(choice == noShots[i].ID)
+                        {
+                            noShots[i].Recieved_Shots = true;
+                            SaveChanges();
+                            check.Add(noShots[i]);
+                            Console.WriteLine($"\n{noShots[i].Name} successfully recieved shots\n\n");
+                            break;
+                        }
+                    }
+                    if (check.Count == 0)
+                    {
+                        Console.WriteLine("\nError: Invalid Input. Make sure you are entering the ID number that matches an animal who");
+                        Console.WriteLine("has not recieved shots.\n\n");
                     }
                 }
-                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.WriteLine("Hit [ENTER] to continue....");
                 Console.ReadKey();
                 Console.Clear();
                 UI.Menu();
             }
             else if(answer == "yes")
             {
+                Console.Clear();
                 Console.WriteLine("Enter the animals ID: ");
                 int response = int.Parse(Console.ReadLine());
                 var match = new List<Animal>();
@@ -398,22 +437,22 @@ namespace HumaneSociety
                         animal.Recieved_Shots = true;
                         match.Add(animal);
                         SaveChanges();
-                        Console.WriteLine($"{animal.Name} successfully recieved shots");
+                        Console.WriteLine($"\n{animal.Name} successfully recieved shots\n\n");
                         break;
                     }
                 }
                 if(match.Count == 0)
                 {
-                    Console.WriteLine("\nNo current animals in the Humane Society match that ID.");
+                    Console.WriteLine("\nNo current animals in the Humane Society match that ID.\n\n");
                 }
-                Console.WriteLine("\nHit [ENTER] to continue.....");
+                Console.WriteLine("Hit [ENTER] to continue....");
                 Console.ReadKey();
                 Console.Clear();
                 UI.Menu();
             }
             else
             {
-                Console.WriteLine("Invalid input. Only enter [yes] or [no].");
+                Console.WriteLine("\nError: Invalid input. Only enter [yes] or [no].");
                 Thread.Sleep(1500);
                 Console.Clear();
                 GiveShots();
