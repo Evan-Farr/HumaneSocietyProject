@@ -250,6 +250,7 @@ namespace HumaneSociety
                 Console.Clear();
                 Menu();
             }
+            Console.Clear();
             return animal;
         }
 

@@ -471,108 +471,104 @@ namespace HumaneSociety
         public static void UpdateAnimal(int number)
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-            Animal animal = UI.GetAnimal();
-            switch (number)
+            Animal tempAnimal = UI.GetAnimal();
+            foreach(var animal in database.Animals)
             {
-                case 1:
-                    Console.WriteLine($"What should {animal.Name}'s NAME be changed to?");
-                    string name = Console.ReadLine().ToLower();
-                    animal.Name = name;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 2:
-                    Console.WriteLine($"What should {animal.Name}'s GENDER be changed to?");
-                    string gender = Console.ReadLine().ToLower();
-                    animal.Gender = gender;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 3:
-                    Console.WriteLine($"What should {animal.Name}'s AGE be changed to?");
-                    int age;
-                    bool isNumber = int.TryParse(Console.ReadLine(), out age);
-                    animal.Age = age;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 4:
-                    Console.WriteLine($"What should {animal.Name}'s BREED be changed to?");
-                    string breed = Console.ReadLine().ToLower();
-                    animal.Breed = breed;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 5:
-                    Console.WriteLine($"What should {animal.Name}'s SIZE be changed to?");
-                    string size = Console.ReadLine().ToLower();
-                    animal.Size = size;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 6:
-                    Console.WriteLine($"What should {animal.Name}'s PERSONALITY TYPE be changed to?");
-                    string personalityType = Console.ReadLine().ToLower();
-                    animal.Personality_Type = personalityType;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 7:
-                    Console.WriteLine($"What should {animal.Name}'s SPECIAL NEEDS status be changed to?");
-                    string specialNeeds = Console.ReadLine().ToLower();
-                    if (specialNeeds == "yes")
+                if(animal.ID == tempAnimal.ID)
+                {
+                    switch (number)
                     {
-                        animal.Special_Needs = true;
+                        case 1:
+                            Console.WriteLine($"What should {animal.Name}'s NAME be changed to?");
+                            string name = Console.ReadLine().ToLower();
+                            animal.Name = name;
+                            break;
+                        case 2:
+                            Console.WriteLine($"What should {animal.Name}'s GENDER be changed to?");
+                            string gender = Console.ReadLine().ToLower();
+                            animal.Gender = gender;
+                            break;
+                        case 3:
+                            Console.WriteLine($"What should {animal.Name}'s AGE be changed to?");
+                            int age;
+                            bool isNumber = int.TryParse(Console.ReadLine(), out age);
+                            animal.Age = age;
+                            break;
+                        case 4:
+                            Console.WriteLine($"What should {animal.Name}'s BREED be changed to?");
+                            string breed = Console.ReadLine().ToLower();
+                            animal.Breed = breed;
+                            break;
+                        case 5:
+                            Console.WriteLine($"What should {animal.Name}'s SIZE be changed to?");
+                            string size = Console.ReadLine().ToLower();
+                            animal.Size = size;
+                            break;
+                        case 6:
+                            Console.WriteLine($"What should {animal.Name}'s PERSONALITY TYPE be changed to?");
+                            string personalityType = Console.ReadLine().ToLower();
+                            animal.Personality_Type = personalityType;
+                            break;
+                        case 7:
+                            Console.WriteLine($"What should {animal.Name}'s SPECIAL NEEDS status be changed to?");
+                            string specialNeeds = Console.ReadLine().ToLower();
+                            if (specialNeeds == "yes")
+                            {
+                                animal.Special_Needs = true;
+                            }
+                            else if (specialNeeds == "no")
+                            {
+                                animal.Special_Needs = false;
+                            }
+                            break;
+                        case 8:
+                            Console.WriteLine($"What should {animal.Name}'s FOOD REQUIREMENTS be changed to?");
+                            string food = Console.ReadLine().ToLower();
+                            animal.Food_Requirments = food;
+                            break;
+                        case 9:
+                            Console.WriteLine($"What should {animal.Name}'s SPAYED/NEUTERED status be changed to?");
+                            string spayNeuter = Console.ReadLine().ToLower();
+                            if (spayNeuter == "yes")
+                            {
+                                animal.Spayed_or_Neutered = true;
+                            }
+                            else if (spayNeuter == "no")
+                            {
+                                animal.Spayed_or_Neutered = false;
+                            }
+                            break;
+                        case 11:
+                            Console.WriteLine($"What should {animal.Name}'s ADPTION PRICE be changed to?");
+                            double price;
+                            bool isDouble = double.TryParse(Console.ReadLine(), out price);
+                            animal.Adoption_Price = price;
+                            break;
+                        case 12:
+                            Console.WriteLine($"What should {animal.Name}'s CATEGORY be changed to?");
+                            string category = Console.ReadLine().ToLower();
+                            animal.Category = category;
+                            break;
                     }
-                    else if (specialNeeds == "no")
-                    {
-                        animal.Special_Needs = false;
-                    }
-                    database.SubmitChanges();
-                    SaveChanges();
                     break;
-                case 8:
-                    Console.WriteLine($"What should {animal.Name}'s FOOD REQUIREMENTS be changed to?");
-                    string food = Console.ReadLine().ToLower();
-                    animal.Food_Requirments = food;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 9:
-                    Console.WriteLine($"What should {animal.Name}'s SPAYED/NEUTERED status be changed to?");
-                    string spayNeuter = Console.ReadLine().ToLower();
-                    if (spayNeuter == "yes")
-                    {
-                        animal.Spayed_or_Neutered = true;
-                    }
-                    else if (spayNeuter == "no")
-                    {
-                        animal.Spayed_or_Neutered = false;
-                    }
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 11:
-                    Console.WriteLine($"What should {animal.Name}'s ADPTION PRICE be changed to?");
-                    double price;
-                    bool isDouble = double.TryParse(Console.ReadLine(), out price);
-                    animal.Adoption_Price = price;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
-                case 12:
-                    Console.WriteLine($"What should {animal.Name}'s CATEGORY be changed to?");
-                    string category = Console.ReadLine().ToLower();
-                    animal.Category = category;
-                    database.SubmitChanges();
-                    SaveChanges();
-                    break;
+                }
             }
-            Console.WriteLine("\n\n> Update Successful.\n\n");
-            Console.WriteLine("Hit [ENTER] to return to Main Menu.");
-            Console.ReadKey();
-            Console.Clear();
-            UI.Menu();
+            try
+            {
+                database.SubmitChanges();
+                SaveChanges();
+                Console.WriteLine("\n\n> Update Successful.\n\n");
+            }
+            catch
+            {
+                Console.WriteLine("An error occured. Changes to the database did not go through.\n\n");
+            }finally
+            {
+                Console.WriteLine("Hit [ENTER] to return to Main Menu.");
+                Console.ReadKey();
+                Console.Clear();
+                UI.Menu();
+            }
         }
     }
 }
