@@ -125,7 +125,7 @@ namespace HumaneSociety
 		
 		private string _Email;
 		
-		private System.Nullable<int> _Phone;
+		private string _Phone;
 		
 		private System.Nullable<int> _Billing_Info;
 		
@@ -161,7 +161,7 @@ namespace HumaneSociety
     partial void OnStreet_AddressChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
-    partial void OnPhoneChanging(System.Nullable<int> value);
+    partial void OnPhoneChanging(string value);
     partial void OnPhoneChanged();
     partial void OnBilling_InfoChanging(System.Nullable<int> value);
     partial void OnBilling_InfoChanged();
@@ -306,8 +306,8 @@ namespace HumaneSociety
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="Int")]
-		public System.Nullable<int> Phone
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="VarChar(15)")]
+		public string Phone
 		{
 			get
 			{

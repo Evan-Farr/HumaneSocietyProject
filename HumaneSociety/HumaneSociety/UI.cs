@@ -190,7 +190,7 @@ namespace HumaneSociety
             Console.WriteLine("5. Email: ");
             adopter.Email = Console.ReadLine().ToLower();
             Console.WriteLine("6. Phone Number: ");
-            adopter.Phone = int.Parse(Console.ReadLine());
+            adopter.Phone = Console.ReadLine();
             Console.WriteLine("7. Personality Profile: ");
             adopter.Personality_Profile = Console.ReadLine().ToLower();
             Console.WriteLine("8. Has Small Children (enter 'true' or 'false'): ");

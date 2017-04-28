@@ -47,3 +47,5 @@ Number_Of_Animals int,
 Type_Of_Animals varchar(max),
 Animals_Interested_In_Adopting int Foreign Key (Animals_Interested_In_Adopting) references dbo.Animal(ID)
 );
+
+Alter table Adopter alter column Phone varchar(15);

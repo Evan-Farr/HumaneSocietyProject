@@ -179,11 +179,17 @@ namespace HumaneSociety
                 Console.WriteLine($"\n! {animal.Name} has successfully been added as a new guest !");
                 Console.WriteLine("Hit [ENTER] to continue.....");
                 Console.ReadKey();
-                Console.Clear();
-                UI.Menu();
             }catch(Exception e)
             {
                 Console.WriteLine(e);
+                Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the database.");
+                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.ReadKey();
+            }
+            finally
+            {
+                Console.Clear();
+                UI.Menu();
             }
         }
 
@@ -192,6 +198,25 @@ namespace HumaneSociety
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
             Adopter adopter = UI.GetNewAdopterInfo();
             database.Adopters.InsertOnSubmit(adopter);
+            try
+            {
+                database.SubmitChanges();
+                Console.WriteLine($"\n! {adopter.First_Name} {adopter.Last_Name} has successfully been added as an adopter !");
+                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.ReadKey();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine($"Error: A problem occured while saving {adopter.First_Name} {adopter.Last_Name} to the database.");
+                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.ReadKey();
+            }
+            finally
+            {
+                Console.Clear();
+                UI.Menu();
+            }
         }
 
         public static void RemoveAnimal()
