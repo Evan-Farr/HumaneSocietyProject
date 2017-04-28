@@ -18,10 +18,11 @@ namespace HumaneSociety
             Console.WriteLine("1) Search for animal");
             Console.WriteLine("2) Search for adopter");
             Console.WriteLine("3) Add new animal");
-            Console.WriteLine("4) Update existing animal (must know ID)");
-            Console.WriteLine("5) Add new adopter");
-            Console.WriteLine("6) Save changes");
-            Console.WriteLine("7) Exit \n");
+            Console.WriteLine("4) Add new adopter");
+            Console.WriteLine("5) Update existing animal (must know ID)");
+            Console.WriteLine("6) Remove adopted animal");
+            Console.WriteLine("7) Save changes");
+            Console.WriteLine("8) Exit \n");
             Console.WriteLine("===> Input number, then hit [ENTER]:");
             string selection = Console.ReadLine();
             switch (selection)
@@ -40,16 +41,20 @@ namespace HumaneSociety
                     break;
                 case "4":
                     Console.Clear();
-                    UI.UpdateAnimalMenu();
+                    Connection.AddAdopter();
                     break;
                 case "5":
                     Console.Clear();
-                    Connection.AddAdopter();
+                    UI.UpdateAnimalMenu();
                     break;
                 case "6":
-                    Connection.SaveChanges();
+                    Console.Clear();
+                    Connection.RemoveAnimal();
                     break;
                 case "7":
+                    Connection.SaveChanges();
+                    break;
+                case "8":
                     Console.Clear();
                     break;
                 default:
@@ -229,7 +234,7 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
             Animal animal = new Animal();
-            Console.WriteLine("\nEnter the ID of the animal to be updated: ");
+            Console.WriteLine("\nEnter animal's ID: ");
             try
             {
                 int choice;

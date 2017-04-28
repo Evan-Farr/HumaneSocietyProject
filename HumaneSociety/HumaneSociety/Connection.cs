@@ -371,11 +371,67 @@ namespace HumaneSociety
         public static void RemoveAnimal()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-        }
-
-        public static void RemoveAdopter()
-        {
-            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            Animal tempanimal = UI.GetAnimal();
+            foreach(var animal in database.Animals)
+            {
+                if(animal.ID == tempanimal.ID)
+                {
+                    Console.WriteLine("\nPlease confirm this is the animal being adopted and should be removed from database.\n");
+                    Console.WriteLine("> ID: " + animal.ID);
+                    Console.WriteLine("> Species: " + animal.Species);
+                    Console.WriteLine("> Name: " + animal.Name);
+                    Console.WriteLine("> Gender: " + animal.Gender);
+                    Console.WriteLine("> Age: " + animal.Age);
+                    Console.WriteLine("> Breed: " + animal.Breed);
+                    Console.WriteLine("> Adult Size: " + animal.Size);
+                    Console.WriteLine("> Personality Type: " + animal.Personality_Type);
+                    Console.WriteLine("> Special-Needs: " + animal.Special_Needs);
+                    Console.WriteLine("> Food Requirements: " + animal.Food_Requirments);
+                    Console.WriteLine("> Spayed/Neutered: " + animal.Spayed_or_Neutered);
+                    Console.WriteLine("> Recieved Shots: " + animal.Recieved_Shots);
+                    Console.WriteLine("> Adoption Price: " + animal.Adoption_Price);
+                    Console.WriteLine("> Category: " + animal.Category + "\n\n");
+                    Console.WriteLine("If this is the correct animal enter [yes], if not enter [no].");
+                    string decision = Console.ReadLine().ToLower();
+                    Console.Clear();
+                    if (decision == "yes")
+                    {
+                        database.Animals.DeleteOnSubmit(animal);
+                        try
+                        {
+                            database.SubmitChanges();
+                            Console.WriteLine($"\n{animal.Name} has successfully been removed.\n\n");
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the database.");
+                        }
+                        finally
+                        {
+                            Console.WriteLine("Hit [ENTER] to return to Main Menu");
+                            Console.ReadKey();
+                            Console.Clear();
+                            UI.Menu();
+                        }
+                    }
+                    else if(decision == "no")
+                    {
+                        Console.WriteLine("Ok. Make sure you know the animal's ID before attempting to make a deletion.\n\n");
+                        Console.WriteLine("Hit [ENTER] to return to Main Menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                        UI.Menu();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Please enter only [yes] or [no] as a response.");
+                        Console.Clear();
+                        RemoveAnimal();
+                    }
+                    break;
+                }
+            }
         }
 
         public static void GiveShots()
