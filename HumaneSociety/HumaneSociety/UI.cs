@@ -11,13 +11,14 @@ namespace HumaneSociety
     {
        public static void Menu()
         {
+            Console.WriteLine();
             Console.WriteLine("------------------------------------");
             Console.WriteLine("              MAIN MENU             ");
             Console.WriteLine("------------------------------------");
             Console.WriteLine("1) Search for animal");
             Console.WriteLine("2) Search for adopter");
             Console.WriteLine("3) Add new animal");
-            Console.WriteLine("4) Give animal shots. (must know ID)");
+            Console.WriteLine("4) Update existing animal (must know ID)");
             Console.WriteLine("5) Add new adopter");
             Console.WriteLine("6) Save changes");
             Console.WriteLine("7) Exit \n");
@@ -39,7 +40,7 @@ namespace HumaneSociety
                     break;
                 case "4":
                     Console.Clear();
-                    Connection.GiveShots();
+                    UI.UpdateAnimalMenu();
                     break;
                 case "5":
                     Console.Clear();
@@ -136,6 +137,122 @@ namespace HumaneSociety
             }
         }
 
+        public static void UpdateAnimalMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine("         UPDATE ANIMAL MENU         ");
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine("1) Name");
+            Console.WriteLine("2) Gender");
+            Console.WriteLine("3) Age");
+            Console.WriteLine("4) Breed");
+            Console.WriteLine("5) Size");
+            Console.WriteLine("6) Personality Type");
+            Console.WriteLine("7) Special Needs");
+            Console.WriteLine("8) Food Requirements");
+            Console.WriteLine("9) Spayed/Neutered");
+            Console.WriteLine("10) Shots/Vaccinations");
+            Console.WriteLine("11) Adoption Price");
+            Console.WriteLine("12) Category");
+            Console.WriteLine("13) Main Menu");
+            Console.WriteLine("14) Exit \n");
+            Console.WriteLine("===> Input number, then hit [ENTER]:");
+            string selection = Console.ReadLine();
+            switch (selection)
+            {
+                case "1":
+                    Console.Clear();
+                    Connection.UpdateAnimal(1);
+                    break;
+                case "2":
+                    Console.Clear();
+                    Connection.UpdateAnimal(2);
+                    break;
+                case "3":
+                    Console.Clear();
+                    Connection.UpdateAnimal(3);
+                    break;
+                case "4":
+                    Console.Clear();
+                    Connection.UpdateAnimal(4);
+                    break;
+                case "5":
+                    Console.Clear();
+                    Connection.UpdateAnimal(5);
+                    break;
+                case "6":
+                    Console.Clear();
+                    Connection.UpdateAnimal(6);
+                    break;
+                case "7":
+                    Console.Clear();
+                    Connection.UpdateAnimal(7);
+                    break;
+                case "8":
+                    Console.Clear();
+                    Connection.UpdateAnimal(8);
+                    break;
+                case "9":
+                    Console.Clear();
+                    Connection.UpdateAnimal(9);
+                    break;
+                case "10":
+                    Console.Clear();
+                    Connection.GiveShots();
+                    break;
+                case "11":
+                    Console.Clear();
+                    Connection.UpdateAnimal(11);
+                    break;
+                case "12":
+                    Console.Clear();
+                    Connection.UpdateAnimal(12);
+                    break;
+                case "13":
+                    Console.Clear();
+                    Menu();
+                    break;
+                case "14":
+                    Console.Clear();
+                    break;
+                default:
+                    Console.WriteLine("Input not valid. Enter only the number.");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    AnimalSubMenu1();
+                    break;
+            }
+        }
+
+        public static Animal GetAnimal()
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            Animal animal = new Animal();
+            Console.WriteLine("\nEnter the ID of the animal to be updated: ");
+            try
+            {
+                int choice;
+                bool isNumber = int.TryParse(Console.ReadLine(), out choice);
+                foreach(var a in database.Animals)
+                {
+                    if (a.ID == choice)
+                    {
+                        animal = a;
+                        break;
+                    }
+                }
+            }catch
+            {
+                Console.WriteLine("You did not enter a valid ID for a current animal at the Humane Society.");
+                Console.WriteLine("Hit [ENTER] to return to the Main Menu....");
+                Console.ReadKey();
+                Console.Clear();
+                Menu();
+            }
+            return animal;
+        }
+
         public static Animal GetKnownCharacteristics()
         {
             Animal animal = new Animal();
@@ -157,7 +274,7 @@ namespace HumaneSociety
             animal.Size = Console.ReadLine().ToLower();
             Console.WriteLine("7. Personality Type: ");
             animal.Personality_Type = Console.ReadLine().ToLower();
-            Console.WriteLine("8. Has Special Needs (enter 'true' or 'false'): ");
+            Console.WriteLine("8. Has Special Needs (enter 'yes' or 'no'): ");
             string input = Console.ReadLine().ToLower();
             if(input == "yes")
             {
@@ -166,7 +283,7 @@ namespace HumaneSociety
             {
                 animal.Special_Needs = false;
             }
-            Console.WriteLine("9. Received Shots (enter 'true' or 'false'): ");
+            Console.WriteLine("9. Received Shots (enter 'yes' or 'no'): ");
             string input2 = Console.ReadLine().ToLower();
             if (input2 == "yes")
             {
