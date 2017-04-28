@@ -26,10 +26,10 @@ namespace HumaneSociety
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
             Console.WriteLine("\nEnter the species you are looking for: ");
             string species = Console.ReadLine().ToLower();
-            var matches = database.Animals.Where(n => n.Species.ToLower() == species).OrderBy(f => f.Name)/*.Select(s => s)*/;
+            var matches = database.Animals.Where(n => n.Species.ToLower() == species).OrderBy(f => f.Name).Select(s => s).ToList();
             if (matches != null)
             {
-                Console.WriteLine("SEARCH RESULTS: ");
+                Console.WriteLine("\nSEARCH RESULTS: ");
                 foreach (var match in matches)
                 {
                     Console.WriteLine("> " + match + "\n");
