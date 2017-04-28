@@ -568,6 +568,11 @@ namespace HumaneSociety
                     SaveChanges();
                     break;
             }
+            Console.WriteLine("\n\n> Update Successful.\n\n");
+            Console.WriteLine("Hit [ENTER] to return to Main Menu.");
+            Console.ReadKey();
+            Console.Clear();
+            UI.Menu();
         }
     }
 }
