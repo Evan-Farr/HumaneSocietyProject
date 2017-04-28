@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HumaneSociety
@@ -16,33 +17,44 @@ namespace HumaneSociety
             Console.WriteLine("1) Search for animal");
             Console.WriteLine("2) Search for adopter");
             Console.WriteLine("3) Add new animal");
-            Console.WriteLine("4) Add new adopter");
-            Console.WriteLine("5) Save changes");
-            Console.WriteLine("6) Exit \n");
+            Console.WriteLine("4) Give animal shots. (must know ID)");
+            Console.WriteLine("5) Add new adopter");
+            Console.WriteLine("6) Save changes");
+            Console.WriteLine("7) Exit \n");
             Console.WriteLine("===> Input number, then hit [ENTER]:");
             string selection = Console.ReadLine();
             switch (selection)
             {
                 case "1":
+                    Console.Clear();
                     AnimalSubMenu1();
                     break;
                 case "2":
+                    Console.Clear();
                     AdopterSubMenu1();
                     break;
                 case "3":
+                    Console.Clear();
                     Connection.AddAnimal();
                     break;
                 case "4":
-                    Connection.AddAdopter();
+                    Console.Clear();
+                    Connection.GiveShots();
                     break;
                 case "5":
-                    Connection.SaveChanges();
+                    Console.Clear();
+                    Connection.AddAdopter();
                     break;
                 case "6":
+                    Connection.SaveChanges();
+                    break;
+                case "7":
                     Console.Clear();
                     break;
                 default:
-                    Console.WriteLine("Input not valid. Enter only the number.");
+                    Console.WriteLine("Input not valid.");
+                    Thread.Sleep(2000);
+                    Console.Clear();
                     Menu();
                     break;
             }
@@ -64,15 +76,19 @@ namespace HumaneSociety
             switch (selection)
             {
                 case "1":
+                    Console.Clear();
                     Connection.SearchBySpecies();
                     break;
                 case "2":
+                    Console.Clear();
                     Connection.SearchByAnimalName();
                     break;
                 case "3":
+                    Console.Clear();
                     Connection.SearchByCharacteristics();
                     break;
                 case "4":
+                    Console.Clear();
                     Menu();
                     break;
                 case "5":
@@ -80,6 +96,8 @@ namespace HumaneSociety
                     break;
                 default:
                     Console.WriteLine("Input not valid. Enter only the number.");
+                    Thread.Sleep(2000);
+                    Console.Clear();
                     AnimalSubMenu1();
                     break;
             }
@@ -99,9 +117,11 @@ namespace HumaneSociety
             switch (selection)
             {
                 case "1":
+                    Console.Clear();
                     Connection.SearchByAdopterName();
                     break;
                 case "2":
+                    Console.Clear();
                     Menu();
                     break;
                 case "3":
@@ -109,6 +129,8 @@ namespace HumaneSociety
                     break;
                 default:
                     Console.WriteLine("Input not valid. Enter only the number.");
+                    Thread.Sleep(2000);
+                    Console.Clear();
                     AdopterSubMenu1();
                     break;
             }
@@ -137,6 +159,7 @@ namespace HumaneSociety
             animal.Special_Needs = bool.Parse(Console.ReadLine().ToLower());
             Console.WriteLine("9. Received Shots (enter 'true' or 'false'): ");
             animal.Recieved_Shots = bool.Parse(Console.ReadLine().ToLower());
+            Console.Clear();
             return animal;
         }
 
@@ -171,6 +194,7 @@ namespace HumaneSociety
             animal.Category = Console.ReadLine().ToLower();
             Console.WriteLine("12. Adoption Price: ");
             animal.Adoption_Price = double.Parse(Console.ReadLine());
+            Console.Clear();
             return animal;
         }
 
@@ -203,6 +227,7 @@ namespace HumaneSociety
             adopter.Type_Of_Animals = Console.ReadLine().ToLower();
             Console.WriteLine("12. ID of animal interested in adopting: ");
             adopter.Animals_Interested_In_Adopting = int.Parse(Console.ReadLine().ToLower());
+            Console.Clear();
             return adopter;
         }
     }

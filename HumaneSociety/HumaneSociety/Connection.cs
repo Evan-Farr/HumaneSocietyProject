@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HumaneSociety
@@ -23,7 +24,7 @@ namespace HumaneSociety
         public static void SearchBySpecies()
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-            Console.WriteLine("\nInput the species you are looking for: ");
+            Console.WriteLine("\nEnter the species you are looking for: ");
             string species = Console.ReadLine().ToLower();
             var matches = database.Animals.Where(n => n.Species.ToLower() == species).OrderBy(f => f.Name).Select(s => s);
             if (matches != null)
@@ -39,6 +40,9 @@ namespace HumaneSociety
                 Console.WriteLine("> No Matches Found.");
                 UI.Menu();
             }
+            Console.WriteLine("Press [ENTER] to continue....");
+            Console.ReadKey();
+            UI.Menu();
         }
 
         public static void SearchByAnimalName()
@@ -229,9 +233,57 @@ namespace HumaneSociety
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
         }
 
-        public static void GiveShots(Animal animal)
+        public static void GiveShots()
         {
-
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            Console.WriteLine("Do you know the animal's ID?");
+            string answer = Console.ReadLine();
+            if(answer == "no")
+            {
+                Console.WriteLine("Here are all the animals who have not recieved shots: ");
+                var matches = database.Animals.Where(s => s.Recieved_Shots == false).OrderBy(n => n.ID);
+                if(matches == null)
+                {
+                    Console.WriteLine("All animals are currently up-to-date on vaccinations.\n");
+                }else
+                {
+                    foreach(var match in matches)
+                    {
+                        Console.WriteLine("> " + match + "\n");
+                    }
+                }
+                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.ReadKey();
+                Console.Clear();
+                UI.Menu();
+            }
+            else if(answer == "yes")
+            {
+                Console.WriteLine("Enter the animals ID: ");
+                int response = int.Parse(Console.ReadLine());
+                foreach(var animal in database.Animals)
+                {
+                    if(animal.ID == response)
+                    {
+                        animal.Recieved_Shots = true;
+                        SaveChanges();
+                        Console.WriteLine($"{animal.Name} successfully recieved shots");
+                    }else
+                    {
+                        Console.WriteLine("No animals that are currently at the Humane Society match that ID.");
+                    }
+                    Console.WriteLine("Hit [ENTER] to continue.....");
+                    Console.ReadKey();
+                    Console.Clear();
+                    UI.Menu();
+                } 
+            }else
+            {
+                Console.WriteLine("Invalid input. Please enter [yes] or [no].");
+                Thread.Sleep(1500);
+                Console.Clear();
+                GiveShots();
+            }
         }
     }
 }
