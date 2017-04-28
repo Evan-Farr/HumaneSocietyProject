@@ -26,7 +26,7 @@ namespace HumaneSociety
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
             Console.WriteLine("\nEnter the species you are looking for: ");
             string species = Console.ReadLine().ToLower();
-            var matches = database.Animals.Where(n => n.Species.ToLower() == species).OrderBy(f => f.Name).Select(s => s);
+            var matches = database.Animals.Where(n => n.Species.ToLower() == species).OrderBy(f => f.Name)/*.Select(s => s)*/;
             if (matches != null)
             {
                 Console.WriteLine("SEARCH RESULTS: ");
@@ -42,6 +42,7 @@ namespace HumaneSociety
             }
             Console.WriteLine("Press [ENTER] to continue....");
             Console.ReadKey();
+            Console.Clear();
             UI.Menu();
         }
 
@@ -181,17 +182,15 @@ namespace HumaneSociety
             {
                 database.SubmitChanges();
                 Console.WriteLine($"\n! {animal.Name} has successfully been added as a new guest !");
-                Console.WriteLine("Hit [ENTER] to continue.....");
-                Console.ReadKey();
             }catch(Exception e)
             {
                 Console.WriteLine(e);
                 Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the database.");
-                Console.WriteLine("Hit [ENTER] to continue.....");
-                Console.ReadKey();
             }
             finally
             {
+                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.ReadKey();
                 Console.Clear();
                 UI.Menu();
             }
@@ -206,18 +205,16 @@ namespace HumaneSociety
             {
                 database.SubmitChanges();
                 Console.WriteLine($"\n! {adopter.First_Name} {adopter.Last_Name} has successfully been added as an adopter !");
-                Console.WriteLine("Hit [ENTER] to continue.....");
-                Console.ReadKey();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 Console.WriteLine($"Error: A problem occured while saving {adopter.First_Name} {adopter.Last_Name} to the database.");
-                Console.WriteLine("Hit [ENTER] to continue.....");
-                Console.ReadKey();
             }
             finally
             {
+                Console.WriteLine("Hit [ENTER] to continue.....");
+                Console.ReadKey();
                 Console.Clear();
                 UI.Menu();
             }
@@ -261,25 +258,30 @@ namespace HumaneSociety
             {
                 Console.WriteLine("Enter the animals ID: ");
                 int response = int.Parse(Console.ReadLine());
+                var match = new List<Animal>();
                 foreach(var animal in database.Animals)
                 {
                     if(animal.ID == response)
                     {
                         animal.Recieved_Shots = true;
+                        match.Add(animal);
                         SaveChanges();
                         Console.WriteLine($"{animal.Name} successfully recieved shots");
-                    }else
-                    {
-                        Console.WriteLine("No animals that are currently at the Humane Society match that ID.");
+                        break;
                     }
-                    Console.WriteLine("Hit [ENTER] to continue.....");
-                    Console.ReadKey();
-                    Console.Clear();
-                    UI.Menu();
-                } 
-            }else
+                }
+                if(match.Count == 0)
+                {
+                    Console.WriteLine("\nNo current animals in the Humane Society match that ID.");
+                }
+                Console.WriteLine("\nHit [ENTER] to continue.....");
+                Console.ReadKey();
+                Console.Clear();
+                UI.Menu();
+            }
+            else
             {
-                Console.WriteLine("Invalid input. Please enter [yes] or [no].");
+                Console.WriteLine("Invalid input. Only enter [yes] or [no].");
                 Thread.Sleep(1500);
                 Console.Clear();
                 GiveShots();
