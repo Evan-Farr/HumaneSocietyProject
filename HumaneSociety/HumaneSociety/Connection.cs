@@ -378,10 +378,11 @@ namespace HumaneSociety
                 else
                 {
                     room.Current_Animal = animal.ID;
+                    room.Is_Available = false;
                     try
                     {
                         database.SubmitChanges();
-                        Console.WriteLine($"{animal.Name} successfully added to room number {room.Room_Number}!\n");
+                        Console.WriteLine($"\n{animal.Name} successfully added to room number {room.Room_Number}!\n");
                     }catch
                     {
                         Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the {room.Room_Number}.\n\n");
