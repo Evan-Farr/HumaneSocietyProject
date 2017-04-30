@@ -706,5 +706,62 @@ namespace HumaneSociety
                 UI.Menu();
             }
         }
+
+        public static void AcceptPayment()
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            Console.WriteLine("\nInput adopter's last name: ");
+            string name = Console.ReadLine().ToLower();
+            var matches = database.Adopters.Where(n => n.Last_Name.ToLower() == name).OrderBy(f => f.First_Name).Select(s => s);
+            if (matches != null)
+            {
+                Console.WriteLine("\nSEARCH RESULTS: \n");
+                foreach (var match in matches)
+                {
+                    Console.WriteLine("> ID: " + match.ID);
+                    Console.WriteLine("> First Name: " + match.First_Name);
+                    Console.WriteLine("> Middle Initial: " + match.Middle_Initial);
+                    Console.WriteLine("> Last Name: " + match.Last_Name);
+                    Console.WriteLine("> Street Address: " + match.Street_Address);
+                    Console.WriteLine("> Email: " + match.Email);
+                    Console.WriteLine("> Phone Number: " + match.Phone);
+                    Console.WriteLine("> Billing Info: " + match.Billing);
+                    Console.WriteLine("> Personality Profile: " + match.Personality_Profile);
+                    Console.WriteLine("> Has small children: " + match.Small_Children);
+                    Console.WriteLine("> Has other animals: " + match.Animals);
+                    Console.WriteLine("> Number of other animals: " + match.Number_Of_Animals);
+                    Console.WriteLine("> Type of other animals: " + match.Type_Of_Animals);
+                    Console.WriteLine("> ID of animal interested in adopting: " + match.Animals_Interested_In_Adopting);
+                }
+            }
+            else
+            {
+                Console.WriteLine("> No Matches Found.\n\n");
+                Console.Clear();
+                AcceptPayment();
+            }
+            Console.WriteLine("\n\nEnter the ID of the adopter to be billed: ");
+            int adopter = int.Parse(Console.ReadLine());
+            var results = database.Adopters.Where(c => c.ID == adopter).Select(s => s).ToList();
+            if(results != null)
+            {
+                Console.WriteLine("\nEnter the adoption price of the animal this person is adopting: ");
+                double price = double.Parse(Console.ReadLine());
+                foreach(var a in results)
+                {
+                    if (a.Billing_Info != null)
+                    {
+                        Console.WriteLine("Payment successful!");
+                    }else
+                    {
+                        Console.WriteLine("Error: There is no valid form of payment available for this person.");
+                    }
+                }
+                Console.WriteLine("\n\nHit [ENTER] to return to Main Menu.");
+                Console.ReadKey();
+                Console.Clear();
+                UI.Menu();
+            }
+        }
     }
 }

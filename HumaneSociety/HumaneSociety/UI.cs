@@ -121,8 +121,9 @@ namespace HumaneSociety
             Console.WriteLine("            ADOPTER MENU            ");
             Console.WriteLine("------------------------------------");
             Console.WriteLine("1) Search by name");
-            Console.WriteLine("2) Main Menu");
-            Console.WriteLine("3) Exit \n");
+            Console.WriteLine("2) Billing/Accept Payment");
+            Console.WriteLine("3) Main Menu");
+            Console.WriteLine("4) Exit \n");
             Console.WriteLine("===> Input number, then hit [ENTER]:");
             string selection = Console.ReadLine();
             switch (selection)
@@ -133,9 +134,13 @@ namespace HumaneSociety
                     break;
                 case "2":
                     Console.Clear();
-                    Menu();
+                    Connection.AcceptPayment();
                     break;
                 case "3":
+                    Console.Clear();
+                    Menu();
+                    break;
+                case "4":
                     Console.Clear();
                     break;
                 default:
