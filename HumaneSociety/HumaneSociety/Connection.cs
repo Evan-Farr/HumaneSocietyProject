@@ -330,18 +330,70 @@ namespace HumaneSociety
             {
                 database.SubmitChanges();
                 Console.WriteLine($"\n! {animal.Name} has successfully been added as a new guest !\n\n");
-            }catch(Exception e)
+                Console.WriteLine($"Now let's give {animal.Name} a room to stay in.\n");
+                FindAvailableRoom();
+                AddAnimalToRoom(animal);
+            }
+            catch(Exception e)
             {
                 Console.WriteLine(e);
-                Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the database.");
+                Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the database.\n\n");
             }
             finally
             {
-                Console.WriteLine("Hit [ENTER] to continue....");
+                Console.WriteLine("Hit [ENTER] to return to Main Menu.");
                 Console.ReadKey();
                 Console.Clear();
                 UI.Menu();
             }
+        }
+
+        public static void FindAvailableRoom()
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            var availableRooms = database.Rooms.Where(r => r.Is_Available == true).OrderBy(o => o.ID).Select(s => s).ToList();
+            Console.WriteLine("All Available Rooms: \n");
+            foreach(var room in availableRooms)
+            {
+                Console.WriteLine("> Room ID: " + room.ID);
+                Console.WriteLine("  Room Number: " + room.Room_Number + "\n");
+            }
+            Console.WriteLine();
+        }
+
+        public static void AddAnimalToRoom(Animal animal)
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            Console.WriteLine($"Enter the room ID {animal.Name} will be moving into: ");
+            int choice;
+            bool isNumber = int.TryParse(Console.ReadLine(), out choice);
+            var check = database.Rooms.Where(r => r.ID == choice).Select(s => s).ToList();
+            foreach(var room in check)
+            {
+                if(room.Is_Available == false)
+                {
+                    Console.WriteLine("That room is not available.\n");
+                    AddAnimalToRoom(animal);
+                }
+                else
+                {
+                    room.Current_Animal = animal.ID;
+                    try
+                    {
+                        database.SubmitChanges();
+                        Console.WriteLine($"{animal.Name} successfully added to room number {room.Room_Number}!\n");
+                    }catch
+                    {
+                        Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the {room.Room_Number}.\n\n");
+                        AddAnimalToRoom(animal);
+                    }
+                }
+            }
+        }
+
+        public static void FindAnimalsRoom()
+        {
+
         }
 
         public static void AddAdopter()

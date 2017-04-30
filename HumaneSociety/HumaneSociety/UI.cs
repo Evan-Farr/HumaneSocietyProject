@@ -75,8 +75,9 @@ namespace HumaneSociety
             Console.WriteLine("1) Search by species");
             Console.WriteLine("2) Search by name");
             Console.WriteLine("3) Search by other characteristics");
-            Console.WriteLine("4) Main Menu");
-            Console.WriteLine("5) Exit \n");
+            Console.WriteLine("4) Locate animal's room");
+            Console.WriteLine("5) Main Menu");
+            Console.WriteLine("6) Exit \n");
             Console.WriteLine("===> Input number, then hit [ENTER]:");
             string selection = Console.ReadLine();
             switch (selection)
@@ -95,9 +96,13 @@ namespace HumaneSociety
                     break;
                 case "4":
                     Console.Clear();
-                    Menu();
+                    Connection.FindAnimalsRoom();
                     break;
                 case "5":
+                    Console.Clear();
+                    Menu();
+                    break;
+                case "6":
                     Console.Clear();
                     break;
                 default:
@@ -307,7 +312,7 @@ namespace HumaneSociety
         {
             Animal animal = new Animal();
             Console.WriteLine("\nFor each characteristic, enter information.");
-            Console.WriteLine("*If you don't know a certain characteristic, enter 'NA' as an answer.");
+            Console.WriteLine("*If you don't know a certain characteristic, leave input blank and press [ENTER].");
             Console.WriteLine("1. Species: ");
             animal.Species = Console.ReadLine().ToLower();
             Console.WriteLine("2. Animal's Name: ");
@@ -315,25 +320,53 @@ namespace HumaneSociety
             Console.WriteLine("3. Gender: ");
             animal.Gender = Console.ReadLine().ToLower();
             Console.WriteLine("4. Age (if less than 1, input '-1': ");
-            animal.Age = int.Parse(Console.ReadLine());
+            int result;
+            bool isNumber = int.TryParse(Console.ReadLine(), out result);
+            animal.Age = result;
             Console.WriteLine("5. Breed: ");
             animal.Breed = Console.ReadLine().ToLower();
             Console.WriteLine("6. Size as Adult: ");
             animal.Size = Console.ReadLine().ToLower();
             Console.WriteLine("7. Personality Type: ");
             animal.Personality_Type = Console.ReadLine().ToLower();
-            Console.WriteLine("8. Has Special Needs (enter 'true' or 'false'): ");
-            animal.Special_Needs = bool.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("8. Has Special Needs (enter 'yes' or 'no'): ");
+            string input = Console.ReadLine().ToLower();
+            if (input == "yes")
+            {
+                animal.Special_Needs = true;
+            }
+            else if (input == "no")
+            {
+                animal.Special_Needs = false;
+            }
             Console.WriteLine("9. Food Requirements: ");
             animal.Food_Requirments = Console.ReadLine().ToLower();
-            Console.WriteLine("10. Is Spayed or Neutered (enter 'true' or 'false'): ");
-            animal.Spayed_or_Neutered = bool.Parse(Console.ReadLine().ToLower());
+            Console.WriteLine("10. Is Spayed or Neutered (enter 'yes' or 'no'): ");
+            string input1 = Console.ReadLine().ToLower();
+            if (input1 == "yes")
+            {
+                animal.Spayed_or_Neutered = true;
+            }
+            else if (input1 == "no")
+            {
+                animal.Spayed_or_Neutered = false;
+            }
             Console.WriteLine("11. Received Shots (enter 'true' or 'false'): ");
-            animal.Recieved_Shots = bool.Parse(Console.ReadLine().ToLower());
+            string input2 = Console.ReadLine().ToLower();
+            if (input2 == "yes")
+            {
+                animal.Recieved_Shots = true;
+            }
+            else if (input2 == "no")
+            {
+                animal.Recieved_Shots = false;
+            }
             Console.WriteLine("12. Animal Category (Options = Dog/Cat/Small-Animal): ");
             animal.Category = Console.ReadLine().ToLower();
             Console.WriteLine("12. Adoption Price: ");
-            animal.Adoption_Price = double.Parse(Console.ReadLine());
+            double result1;
+            bool isNumber1 = double.TryParse(Console.ReadLine(), out result1);
+            animal.Adoption_Price = result1;
             Console.Clear();
             return animal;
         }
@@ -370,5 +403,7 @@ namespace HumaneSociety
             Console.Clear();
             return adopter;
         }
+
+        
     }
 }

@@ -49,3 +49,27 @@ Animals_Interested_In_Adopting int Foreign Key (Animals_Interested_In_Adopting) 
 );
 
 Alter table Adopter alter column Phone varchar(15);
+
+Insert into Rooms (Room_Number, Is_Available, Current_Animal)
+values (6, 1, null);
+
+Insert into Rooms (Room_Number, Is_Available, Current_Animal)
+values (7, 1, null);
+
+Insert into Rooms (Room_Number, Is_Available, Current_Animal)
+values (8, 1, null);
+
+Insert into Rooms (Room_Number, Is_Available, Current_Animal)
+values (9, 1, null);
+
+Insert into Rooms (Room_Number, Is_Available, Current_Animal)
+values (10, 1, null);
+
+Insert into Rooms (Room_Number, Is_Available, Current_Animal)
+values (11, 1, null);
+
+Insert into Rooms (Room_Number, Is_Available, Current_Animal)
+values (12, 1, null);
+
+Insert into Rooms (Room_Number, Is_Available, Current_Animal)
+values (13, 1, null);
