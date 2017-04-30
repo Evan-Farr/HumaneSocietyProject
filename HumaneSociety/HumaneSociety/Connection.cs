@@ -364,37 +364,48 @@ namespace HumaneSociety
         public static void AddAnimalToRoom(Animal animal)
         {
             HumaneSocietyDataContext database = new HumaneSocietyDataContext();
-            Console.WriteLine($"Enter the room ID {animal.Name} will be moving into: ");
+            Console.WriteLine($"Enter the room's ID {animal.Name} will be moving into: ");
             int choice;
             bool isNumber = int.TryParse(Console.ReadLine(), out choice);
             var check = database.Rooms.Where(r => r.ID == choice).Select(s => s).ToList();
-            foreach(var room in check)
+            if(check != null)
             {
-                if(room.Is_Available == false)
+                foreach (var room in check)
                 {
-                    Console.WriteLine("That room is not available.\n");
-                    AddAnimalToRoom(animal);
-                }
-                else
-                {
-                    room.Current_Animal = animal.ID;
-                    room.Is_Available = false;
-                    try
+                    if (room.Is_Available == false)
                     {
-                        database.SubmitChanges();
-                        Console.WriteLine($"\n{animal.Name} successfully added to room number {room.Room_Number}!\n");
-                    }catch
-                    {
-                        Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the {room.Room_Number}.\n\n");
+                        Console.WriteLine("That room is not available.\n");
                         AddAnimalToRoom(animal);
                     }
+                    else
+                    {
+                        room.Current_Animal = animal.ID;
+                        room.Is_Available = false;
+                        try
+                        {
+                            database.SubmitChanges();
+                            Console.WriteLine($"\n{animal.Name} successfully added to room number {room.Room_Number}!\n");
+                        }
+                        catch
+                        {
+                            Console.WriteLine($"Error: A problem occured while saving {animal.Name} to the {room.Room_Number}.\n\n");
+                            AddAnimalToRoom(animal);
+                        }
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("\n\nError: You did not enter a valid room number.\n\n");
+                AddAnimalToRoom(animal);
             }
         }
 
         public static void FindAnimalsRoom()
         {
-
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            Console.WriteLine("Do you know the animal's ID? (enter 'yes' or 'no') ");
+            Console.WriteLine($"Enter the ID of the animal to find which room they are located in: ");
         }
 
         public static void AddAdopter()
@@ -450,6 +461,7 @@ namespace HumaneSociety
                     if (decision == "yes")
                     {
                         database.Animals.DeleteOnSubmit(animal);
+                        MakeRoomAvailable(animal);
                         try
                         {
                             database.SubmitChanges();
@@ -484,6 +496,21 @@ namespace HumaneSociety
                     }
                     break;
                 }
+            }
+        }
+
+        public static void MakeRoomAvailable(Animal animal)
+        {
+            HumaneSocietyDataContext database = new HumaneSocietyDataContext();
+            var room = database.Rooms.Where(a => a.Current_Animal == animal.ID).Select(s => s).ToList();
+            if(room != null)
+            {
+                foreach(var r in room)
+                {
+                    r.Current_Animal = null;
+                    r.Is_Available = true;
+                }
+                database.SubmitChanges();
             }
         }
 

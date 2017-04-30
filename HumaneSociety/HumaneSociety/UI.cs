@@ -351,7 +351,7 @@ namespace HumaneSociety
             {
                 animal.Spayed_or_Neutered = false;
             }
-            Console.WriteLine("11. Received Shots (enter 'true' or 'false'): ");
+            Console.WriteLine("11. Received Shots (enter 'yes' or 'no'): ");
             string input2 = Console.ReadLine().ToLower();
             if (input2 == "yes")
             {
