@@ -21,7 +21,22 @@ namespace HumaneSociety
             var imported = ReadCSV(file);
             foreach(var data in imported)
             {
-                //database.Animals.InsertOnSubmit(data);
+                Animal animal = new Animal();
+                animal.Species = data[0];
+                animal.Name = data[1];
+                animal.Gender = data[2];
+                animal.Age = int.Parse(data[3]);
+                animal.Breed = data[4];
+                animal.Size = data[5];
+                animal.Personality_Type = data[6];
+                animal.Special_Needs = bool.Parse(data[7]);
+                animal.Food_Requirments = data[8];
+                animal.Spayed_or_Neutered = bool.Parse(data[9]);
+                animal.Recieved_Shots = bool.Parse(data[10]);
+                animal.Adoption_Price = double.Parse(data[11]);
+                animal.Category = data[12];
+
+                database.Animals.InsertOnSubmit(animal);
             }
             database.SubmitChanges();
             Console.WriteLine("File successfully added.\n\n");
