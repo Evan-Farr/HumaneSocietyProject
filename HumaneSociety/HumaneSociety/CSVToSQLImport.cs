@@ -21,8 +21,14 @@ namespace HumaneSociety
             var imported = ReadCSV(file);
             foreach(var data in imported)
             {
-                 
+                //database.Animals.InsertOnSubmit(data);
             }
+            database.SubmitChanges();
+            Console.WriteLine("File successfully added.\n\n");
+            Console.WriteLine("Press [ENTER] to continue....");
+            Console.ReadKey();
+            Console.Clear();
+            UI.Menu();
         }
 
         //    SqlBulkCopy objBulk = new SqlBulkCopy(connection);

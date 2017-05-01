@@ -21,8 +21,9 @@ namespace HumaneSociety
             Console.WriteLine("4) Add new adopter");
             Console.WriteLine("5) Update existing animal (must know ID)");
             Console.WriteLine("6) Remove adopted animal");
-            Console.WriteLine("7) Save changes");
-            Console.WriteLine("8) Exit \n");
+            Console.WriteLine("7) Import CSV File");
+            Console.WriteLine("8) Save changes");
+            Console.WriteLine("9) Exit \n");
             Console.WriteLine("===> Input number, then hit [ENTER]:");
             string selection = Console.ReadLine();
             switch (selection)
@@ -52,9 +53,13 @@ namespace HumaneSociety
                     Connection.RemoveAnimal();
                     break;
                 case "7":
-                    Connection.SaveChanges();
+                    Console.Clear();
+                    CSVToSQLImport.ImportCSV(GetFileName());
                     break;
                 case "8":
+                    Connection.SaveChanges();
+                    break;
+                case "9":
                     Console.Clear();
                     break;
                 default:
@@ -409,6 +414,12 @@ namespace HumaneSociety
             return adopter;
         }
 
-        
+        public static string GetFileName()
+        {
+            Console.WriteLine("\nEnter the path to the CSV file: ");
+            string file = Console.ReadLine();
+            Console.Clear();
+            return file;
+        }
     }
 }

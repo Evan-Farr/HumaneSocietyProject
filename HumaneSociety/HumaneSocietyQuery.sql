@@ -72,4 +72,4 @@ Insert into Rooms (Room_Number, Is_Available, Current_Animal)
 values (12, 1, null);
 
 Insert into Rooms (Room_Number, Is_Available, Current_Animal)
-values (13, 1, null);
+values (14, 1, null);
